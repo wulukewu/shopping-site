@@ -9,7 +9,7 @@
     <div class="nav-links">
       <ul>
         <li>Home</li>
-        <li v-for="category in categories" :key="category">{{ category }}</li>
+        <li v-for="category in categories" :key="category.id">{{ category.name }}</li>
       </ul>
     </div>
   </div>
