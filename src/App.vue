@@ -1,15 +1,29 @@
 <template>
-  <navbar-list></navbar-list>
+  <navbar-list :categories="categories"></navbar-list>
 </template>
 
 <script>
-import NavbarList from './components/navbar/NavbarList.vue';
+import NavbarList from "./components/navbar/NavbarList.vue";
 
 export default {
   components: {
-    NavbarList
-  }
-}
+    NavbarList,
+  },
+  data() {
+    return {
+      categories: [
+        "Clothing",
+        "Electronics",
+        "Home & Kitchen",
+        "Accessories",
+        "Shoes",
+        "Books",
+        "Furniture",
+        "Sports & Outdoors",
+      ],
+    };
+  },
+};
 </script>
 
 <style>

@@ -9,18 +9,22 @@
     <div class="nav-links">
       <ul>
         <li>Home</li>
-        <li>Clothing</li>
-        <li>Electronics</li>
-        <li>Home & Kitchen</li>
-        <li>Accessories</li>
-        <li>Shoes</li>
-        <li>Books</li>
-        <li>Furniture</li>
-        <li>Sports & Outdoors</li>
+        <li v-for="category in categories" :key="category">{{ category }}</li>
       </ul>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    categories: {
+      type: Array,
+      required: true,
+    },
+  },
+};
+</script>
 
 <style scoped>
 .navbar {
