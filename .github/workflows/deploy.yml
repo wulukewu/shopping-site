@@ -1,0 +1,20 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm install # or yarn install
+      - run: npm run build # or yarn build
+      - uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist # build folder
+          branch: gh-pages # deploy to gh-pages branch
