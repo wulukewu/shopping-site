@@ -10,6 +10,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+# Function to generate an image for a product
 def image_generator(input_name, input_id):
 
     # Set up the prompt for the AI
@@ -17,12 +18,18 @@ def image_generator(input_name, input_id):
     default_prompt = 'realistic products for a shopping website to attract customers.\nstyle: minimalistic, no background, no other objects, focus on the product only.'
     input_prompt = f'product: "{product_name}"\n{default_prompt}'
 
+    # Set up the image path and name
     image_path = '../../src/components/products/images'
     image_name = f"{image_path}/{input_id}.png"
 
+    # Check if the image already exists
+    if os.path.exists(image_name):
+        print(f'[INFO] Image for {input_name} with ID {input_id} already exists.')
+        return
+
     # Set up ChromeDriver with options
     options = webdriver.ChromeOptions()
-    options.add_argument("--headless")
+    # options.add_argument("--headless") # disable for downloading correct images
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--disable-gpu')
@@ -35,6 +42,7 @@ def image_generator(input_name, input_id):
     # service = Service(executable_path=ChromeDriverManager().install())
     # driver = webdriver.Chrome(service=service, options=options)
 
+    # Print the Chrome version and ChromeDriver version
     print("Chrome version:", driver.capabilities['browserVersion'])
     print("ChromeDriver version:", driver.capabilities['chrome']['chromedriverVersion'])
 
@@ -94,6 +102,9 @@ def image_generator(input_name, input_id):
     # Quit the driver
     driver.quit()
 
+    # Print the success message
+    print(f'[INFO] Image generated for {input_name} with ID {input_id}.')
+
 # Load products from JSON file
 with open('../../src/components/products/products.json', 'r') as file:
     products = json.load(file)
@@ -103,4 +114,3 @@ for product in products:
     input_name = product['name']
     input_id = product['id']
     image_generator(input_name, input_id)
-    print(f'[INFO] Image generated for {input_name} with ID {input_id}.')
