@@ -14,12 +14,12 @@ export default {
       categories: [
         { id: "clothing", name: "Clothing" },
         { id: "electronics", name: "Electronics" },
-        { id: "home-&-kitchen", name: "Home & Kitchen" },
+        { id: "home-and-kitchen", name: "Home & Kitchen" },
         { id: "accessories", name: "Accessories" },
         { id: "shoes", name: "Shoes" },
         { id: "books", name: "Books" },
         { id: "furniture", name: "Furniture" },
-        { id: "sports-&-outdoors", name: "Sports & Outdoors" },
+        { id: "sports-and-outdoors", name: "Sports & Outdoors" },
       ],
     };
   },
