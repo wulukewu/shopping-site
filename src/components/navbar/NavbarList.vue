@@ -6,10 +6,17 @@
         src="../../assets/logo/shopping-high-resolution-logo-transparent.png"
       />
     </div>
-    <div>
+    <div class="nav-links">
       <ul>
         <li>Home</li>
-        <li>Products</li>
+        <li>Clothing</li>
+        <li>Electronics</li>
+        <li>Home & Kitchen</li>
+        <li>Accessories</li>
+        <li>Shoes</li>
+        <li>Books</li>
+        <li>Furniture</li>
+        <li>Sports & Outdoors</li>
       </ul>
     </div>
   </div>
@@ -18,11 +25,12 @@
 <style scoped>
 .navbar {
   display: flex;
-  padding: 0;
+  padding: 0 20px;
   justify-content: space-between;
   align-items: center;
   background-color: #e8e8e8;
   height: 75px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .navbar .logo {
@@ -38,13 +46,24 @@
   object-fit: contain;
 }
 
-li {
-  display: inline;
-  margin-right: 15px;
+.nav-links ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links li {
+  margin-right: 20px;
   cursor: pointer;
   color: #2c3e50;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-links li:hover {
+  color: #007bff;
 }
 </style>
