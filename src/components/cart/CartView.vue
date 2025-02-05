@@ -13,8 +13,7 @@
           <p>Price: $ {{ item.price.toLocaleString() }}</p>
           <div class="quantity-control">
             <button type="button" @click="decreaseQuantity(item)">
-              <i v-show="item.quantity == 1" class="fas fa-trash"></i>
-              <i v-show="item.quantity > 1" class="fas fa-minus"></i>
+              <i class="fas fa-minus"></i>
             </button>
             <input type="number" v-model="item.quantity" readonly />
             <button type="button" @click="increaseQuantity(item)">
