@@ -23,7 +23,7 @@ export default {
   },
   data() {
     return {
-      filteredProducts: this.products,
+      filteredProducts: [],
     };
   },
   watch: {
@@ -31,6 +31,12 @@ export default {
       immediate: true,
       handler(newCategory) {
         this.filterProducts(newCategory);
+      },
+    },
+    products: {
+      immediate: true,
+      handler() {
+        this.filterProducts(this.$route.params.category);
       },
     },
   },
@@ -46,7 +52,6 @@ export default {
     },
   },
   mounted() {
-    console.log('mounted');
     this.filterProducts(this.$route.params.category);
   },
 };
