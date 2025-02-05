@@ -37,7 +37,12 @@ export default {
   },
   mounted() {
     fetch("/products.json")
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then((data) => {
         this.products = data;
       })
