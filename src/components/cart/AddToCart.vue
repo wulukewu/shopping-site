@@ -82,7 +82,6 @@ label {
   background-color: #f0f0f0;
   border: none;
   border-radius: 5px;
-  -moz-appearance: textfield;
 }
 
 .quantity-control input[type="number"]::-webkit-outer-spin-button,
