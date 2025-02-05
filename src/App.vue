@@ -5,7 +5,7 @@
       :products="products"
       :cart="cart"
       :add-to-cart="addToCart"
-      :update-cart="updateCart"
+      @update-cart="updateCart"
     ></router-view>
   </div>
 </template>
@@ -17,15 +17,23 @@ export default {
   components: {
     NavbarList,
   },
+  data() {
+    return {
+      categories: [
+        { id: "clothing", name: "Clothing" },
+        { id: "electronics", name: "Electronics" },
+        { id: "home-and-kitchen", name: "Home & Kitchen" },
+        { id: "accessories", name: "Accessories" },
+        { id: "shoes", name: "Shoes" },
+        { id: "books", name: "Books" },
+        { id: "furniture", name: "Furniture" },
+        { id: "sports-and-outdoors", name: "Sports & Outdoors" },
+      ],
+      products: [],
+      cart: [],
+    };
+  },
   methods: {
-    // generateId() {
-    //   const characters = "abcdefghijklmnopqrstuvwxyz";
-    //   let id = "";
-    //   for (let i = 0; i < 8; i++) {
-    //     id += characters.charAt(Math.floor(Math.random() * characters.length));
-    //   }
-    //   return id;
-    // },
     addToCart(productId, quantity) {
       const product = this.products.find((product) => product.id === productId);
       if (product) {
@@ -43,22 +51,9 @@ export default {
         }
       }
     },
-  },
-  data() {
-    return {
-      categories: [
-        { id: "clothing", name: "Clothing" },
-        { id: "electronics", name: "Electronics" },
-        { id: "home-and-kitchen", name: "Home & Kitchen" },
-        { id: "accessories", name: "Accessories" },
-        { id: "shoes", name: "Shoes" },
-        { id: "books", name: "Books" },
-        { id: "furniture", name: "Furniture" },
-        { id: "sports-and-outdoors", name: "Sports & Outdoors" },
-      ],
-      products: [],
-      cart: [],
-    };
+    updateCart(updatedCart) {
+      this.cart = updatedCart;
+    },
   },
   mounted() {
     const baseUrl =

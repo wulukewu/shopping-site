@@ -1,8 +1,8 @@
 <template>
   <div class="cart">
     <h1>Shopping Cart</h1>
-    <div v-if="cart.length > 0" class="cart-items">
-      <div v-for="item in cart" :key="item.id" class="cart-item">
+    <div v-if="localCart.length > 0" class="cart-items">
+      <div v-for="item in localCart" :key="item.id" class="cart-item">
         <img
           :src="require(`@/components/products/images/${item.id}.png`)"
           :alt="item.name"
@@ -13,7 +13,8 @@
           <p>Price: $ {{ item.price.toLocaleString() }}</p>
           <div class="quantity-control">
             <button type="button" @click="decreaseQuantity(item)">
-              <i class="fas fa-minus"></i>
+              <i v-show="item.quantity == 1" class="fas fa-trash"></i>
+              <i v-show="item.quantity > 1" class="fas fa-minus"></i>
             </button>
             <input type="number" v-model="item.quantity" readonly />
             <button type="button" @click="increaseQuantity(item)">
@@ -39,28 +40,30 @@ export default {
   },
   data() {
     return {
-      localCart: this.cart,
+      localCart: [],
     };
   },
   watch: {
     cart: {
       immediate: true,
-      handler() {
-        this.localCart = this.cart;
+      handler(newCart) {
+        this.localCart = [...newCart];
       },
+      deep: true,
     },
   },
   methods: {
     decreaseQuantity(item) {
       if (item.quantity > 1) {
         item.quantity--;
-      } else if (this.localCart) {
-        this.localCart.splice(this.cart.indexOf(item), 1);
+      } else {
+        this.localCart.splice(this.localCart.indexOf(item), 1);
       }
       this.updateCart();
     },
     increaseQuantity(item) {
       item.quantity++;
+      this.updateCart();
     },
     updateCart() {
       this.$emit("update-cart", this.localCart);
@@ -124,7 +127,6 @@ export default {
   font-size: 1.2em;
   color: #666;
   margin-bottom: 5px;
-  margin-top: auto;
 }
 
 .quantity-control {
