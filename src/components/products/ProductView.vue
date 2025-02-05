@@ -115,6 +115,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-left: 20px;
 }
 
 .product-details h1 {
