@@ -1,16 +1,14 @@
 <template>
   <navbar-list :categories="categories"></navbar-list>
-  <products-list :products="products"></products-list>
+  <router-view :products="products"></router-view>
 </template>
 
 <script>
 import NavbarList from "./components/navbar/NavbarList.vue";
-import ProductsList from "./components/products/ProductsList.vue";
 
 export default {
   components: {
     NavbarList,
-    ProductsList,
   },
   methods: {
     // generateId() {
@@ -38,12 +36,12 @@ export default {
     };
   },
   mounted() {
-    fetch("products.json")
-      .then(response => response.json())
-      .then(data => {
+    fetch("/products.json")
+      .then((response) => response.json())
+      .then((data) => {
         this.products = data;
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error fetching products:", error);
       });
   },

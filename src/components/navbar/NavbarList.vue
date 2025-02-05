@@ -1,15 +1,23 @@
 <template>
   <div class="navbar">
     <div class="logo">
-      <img
-        alt="shopping logo"
-        src="../../assets/logo/shopping-high-resolution-logo-transparent.png"
-      />
+      <router-link to="/">
+        <img
+          alt="shopping logo"
+          src="../../assets/logo/shopping-high-resolution-logo-transparent.png"
+        />
+      </router-link>
     </div>
     <div class="nav-links">
       <ul>
-        <li>Home</li>
-        <li v-for="category in categories" :key="category.id">{{ category.name }}</li>
+        <router-link to="/">Home</router-link>
+        <router-link
+          v-for="category in categories"
+          :key="category.id"
+          :to="`/products/${category.id}`"
+        >
+          {{ category.name }}
+        </router-link>
       </ul>
     </div>
   </div>
@@ -44,6 +52,12 @@ export default {
   height: 100%;
 }
 
+.navbar .logo a {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
 .navbar .logo img {
   height: 60%;
   width: auto;
@@ -57,7 +71,7 @@ export default {
   margin: 0;
 }
 
-.nav-links li {
+.nav-links a {
   margin-right: 20px;
   cursor: pointer;
   color: #2c3e50;
@@ -65,9 +79,11 @@ export default {
   font-weight: bold;
   text-decoration: none;
   transition: color 0.3s ease;
+  align-content: center;
 }
 
-.nav-links li:hover {
+.nav-links a:hover,
+.nav-links a.active {
   color: #007bff;
 }
 </style>

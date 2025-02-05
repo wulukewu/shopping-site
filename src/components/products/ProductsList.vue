@@ -1,8 +1,11 @@
 <template>
   <div class="products">
     <ul>
-      <li v-for="product in products" :key="product.id">
-        <img :src="require(`@/components/products/images/${product.id}.png`)" :alt="product.name" />
+      <li v-for="product in filteredProducts" :key="product.id">
+        <img
+          :src="require(`@/components/products/images/${product.id}.png`)"
+          :alt="product.name"
+        />
         <h3>{{ product.name }}</h3>
         <p>$ {{ product.price }}</p>
       </li>
@@ -18,48 +21,75 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      filteredProducts: [],
+    };
+  },
+  watch: {
+    "$route.params.category": {
+      immediate: true,
+      handler(newCategory) {
+        this.filterProducts(newCategory);
+      },
+    },
+  },
+  methods: {
+    filterProducts(category) {
+      if (category) {
+        this.filteredProducts = this.products.filter((product) =>
+          product.category.includes(category)
+        );
+      } else {
+        this.filteredProducts = this.products;
+      }
+    },
+  },
+  mounted() {
+    this.filterProducts(this.$route.params.category);
+  },
 };
 </script>
 
 <style scoped>
 .products {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .products ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .products li {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 16px;
-    width: 200px;
-    text-align: center;
-    cursor: pointer;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  width: 200px;
+  text-align: center;
+  cursor: pointer;
 }
 
 .products img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 4px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
 }
 
 .products h3 {
-    font-size: 1.2em;
-    margin: 10px 0;
+  font-size: 1.2em;
+  margin: 10px 0;
 }
 
 .products p {
-    font-size: 1em;
-    color: #333;
+  font-size: 1em;
+  color: #333;
 }
 </style>
