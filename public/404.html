@@ -4,12 +4,14 @@
     <meta charset="utf-8" />
     <title>Redirecting...</title>
     <script type="text/javascript">
-      // Single Page Apps for GitHub Pages
-      // MIT License
-      // https://github.com/rafgraph/spa-github-pages
       (function (l) {
+        // Check if the current path is the index.html. If so, no need to redirect.
+        if (l.pathname.endsWith("index.html")) {
+          return; // Exit to prevent redirect loop.
+        }
+
         l.replace(
-          l.pathname.replace(/\/[^\/]*$/, "/") +
+          l.pathname.slice(0, l.pathname.lastIndexOf("/") + 1) + // Keep the base directory
             "index.html" +
             (l.search || "") +
             (l.hash || "")
