@@ -2,9 +2,13 @@
   <form>
     <label for="quantity">Quantity</label>
     <div class="quantity-control">
-      <button type="button" @click="decreaseQuantity">-</button>
+      <button type="button" @click="decreaseQuantity">
+        <i class="fas fa-minus"></i>
+      </button>
       <input type="number" id="quantity" v-model="quantity" />
-      <button type="button" @click="increaseQuantity">+</button>
+      <button type="button" @click="increaseQuantity">
+        <i class="fas fa-plus"></i>
+      </button>
     </div>
     <button class="add-to-cart-button" @click.prevent="addToCart">
       Add to Cart
