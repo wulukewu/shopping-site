@@ -11,6 +11,9 @@
       <p class="price">$ {{ product.price }}</p>
       <p class="description">{{ product.description }}</p>
     </div>
+    <div>
+        <add-to-cart @add-to-cart="handleAddToCart"></add-to-cart>
+    </div>
   </div>
   <div v-else-if="isLoading" class="is-loading">
     <p>Loading...</p>
@@ -22,10 +25,19 @@
 </template>
 
 <script>
+import AddToCart from "../cart/AddToCart.vue";
+
 export default {
+  components: {
+    AddToCart,
+  },
   props: {
     products: {
       type: Array,
+      required: true,
+    },
+    addToCart: {
+      type: Function,
       required: true,
     },
   },
@@ -67,6 +79,9 @@ export default {
         ); // Handle the case where the product isn't found (e.g., redirect, show an error).
       }
     },
+    handleAddToCart(quantity){
+        this.addToCart(this.product.id, quantity);
+    }
   },
   mounted() {
     this.updateProduct();

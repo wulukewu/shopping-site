@@ -1,7 +1,12 @@
 <template>
   <navbar-list :categories="categories"></navbar-list>
   <div class="content">
-    <router-view :products="products"></router-view>
+    <router-view
+      :products="products"
+      :cart="cart"
+      :add-to-cart="addToCart"
+      :update-cart="updateCart"
+    ></router-view>
   </div>
 </template>
 
@@ -21,6 +26,23 @@ export default {
     //   }
     //   return id;
     // },
+    addToCart(productId, quantity) {
+      const product = this.products.find((product) => product.id === productId);
+      if (product) {
+        const cartItem = this.cart.find((item) => item.id === productId);
+        if (cartItem) {
+          cartItem.quantity += quantity;
+        } else {
+          const item = {
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            quantity,
+          };
+          this.cart.push(item);
+        }
+      }
+    },
   },
   data() {
     return {
@@ -35,6 +57,7 @@ export default {
         { id: "sports-and-outdoors", name: "Sports & Outdoors" },
       ],
       products: [],
+      cart: [],
     };
   },
   mounted() {
