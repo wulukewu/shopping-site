@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Not Found</title>
+    <script type="text/javascript">
+      // Redirect all 404 requests to the index.html file
+      var path = window.location.pathname;
+      var redirectTo = '/shopping-site/index.html';
+      if (path.startsWith('/shopping-site/')) {
+        redirectTo = '/shopping-site/index.html';
+      }
+      window.location.replace(redirectTo);
+    </script>
+  </head>
+  <body>
+    <h1>Page Not Found</h1>
+    <p>Redirecting...</p>
+  </body>
+</html>
