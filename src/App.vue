@@ -36,7 +36,8 @@ export default {
     };
   },
   mounted() {
-    fetch("/shopping-site/products.json")
+    const baseUrl = process.env.NODE_ENV === 'production' ? '/shopping-site' : '';
+    fetch(`${baseUrl}/products.json`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
