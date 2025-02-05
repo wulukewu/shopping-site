@@ -10,9 +10,7 @@
       <h1>{{ product.name }}</h1>
       <p class="price">$ {{ product.price }}</p>
       <p class="description">{{ product.description }}</p>
-    </div>
-    <div>
-        <add-to-cart @add-to-cart="handleAddToCart"></add-to-cart>
+      <add-to-cart @add-to-cart="handleAddToCart"></add-to-cart>
     </div>
   </div>
   <div v-else-if="isLoading" class="is-loading">
@@ -79,9 +77,9 @@ export default {
         ); // Handle the case where the product isn't found (e.g., redirect, show an error).
       }
     },
-    handleAddToCart(quantity){
-        this.addToCart(this.product.id, quantity);
-    }
+    handleAddToCart(quantity) {
+      this.addToCart(this.product.id, quantity);
+    },
   },
   mounted() {
     this.updateProduct();
@@ -92,7 +90,7 @@ export default {
 <style scoped>
 .product-view {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 8px;
