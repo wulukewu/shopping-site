@@ -11,7 +11,11 @@
         <div class="cart-item-details">
           <h2>{{ item.name }}</h2>
           <p>Price: $ {{ item.price.toLocaleString() }}</p>
-          <p>Quantity: {{ item.quantity }}</p>
+          <div class="quantity-control">
+            <button type="button" @click="decreaseQuantity(item)">-</button>
+            <input type="number" v-model="item.quantity" readonly />
+            <button type="button" @click="increaseQuantity(item)">+</button>
+          </div>
         </div>
       </div>
     </div>
@@ -27,6 +31,16 @@ export default {
     cart: {
       type: Array,
       required: true,
+    },
+  },
+  methods: {
+    decreaseQuantity(item) {
+      if (item.quantity > 1) {
+        item.quantity--;
+      }
+    },
+    increaseQuantity(item) {
+      item.quantity++;
     },
   },
 };
@@ -87,6 +101,47 @@ export default {
   font-size: 1.2em;
   color: #666;
   margin-bottom: 5px;
+  margin-top: auto;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 125px;
+}
+
+.quantity-control button {
+  padding: 5px 10px;
+  font-size: 1em;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.quantity-control button:hover {
+  background-color: #0056b3;
+}
+
+.quantity-control input[type="number"] {
+  width: 50px;
+  padding: 5px;
+  font-size: 1em;
+  text-align: center;
+  margin: 0 10px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+}
+
+.quantity-control input[type="number"]::-webkit-outer-spin-button,
+.quantity-control input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .empty-cart {
