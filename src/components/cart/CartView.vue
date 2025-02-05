@@ -37,14 +37,33 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      localCart: this.cart,
+    };
+  },
+  watch: {
+    cart: {
+      immediate: true,
+      handler() {
+        this.localCart = this.cart;
+      },
+    },
+  },
   methods: {
     decreaseQuantity(item) {
       if (item.quantity > 1) {
         item.quantity--;
+      } else if (this.localCart) {
+        this.localCart.splice(this.cart.indexOf(item), 1);
       }
+      this.updateCart();
     },
     increaseQuantity(item) {
       item.quantity++;
+    },
+    updateCart() {
+      this.$emit("update-cart", this.localCart);
     },
   },
 };
