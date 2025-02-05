@@ -22,6 +22,9 @@
           </div>
         </div>
       </div>
+      <div class="cart-total">
+        <h2>Total: $ {{ cartTotal.toLocaleString() }}</h2>
+      </div>
     </div>
     <div v-else class="empty-cart">
       <p>Your cart is empty.</p>
@@ -34,6 +37,10 @@ export default {
   props: {
     cart: {
       type: Array,
+      required: true,
+    },
+    cartTotal: {
+      type: Number,
       required: true,
     },
   },
@@ -65,6 +72,8 @@ export default {
       this.updateCart();
     },
     updateCart() {
+      // Trigger reactivity by creating a new array
+      this.localCart = [...this.localCart];
       this.$emit("update-cart", this.localCart);
     },
   },
@@ -166,6 +175,12 @@ export default {
 .quantity-control input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.cart-total {
+  margin-top: 20px;
+  font-size: 1.5em;
+  color: #333;
 }
 
 .empty-cart {

@@ -4,6 +4,7 @@
     <router-view
       :products="products"
       :cart="cart"
+      :cartTotal="cartTotal"
       :add-to-cart="addToCart"
       @update-cart="updateCart"
     ></router-view>
@@ -31,6 +32,7 @@ export default {
       ],
       products: [],
       cart: [],
+      cartTotal: 0,
     };
   },
   methods: {
@@ -49,10 +51,15 @@ export default {
           };
           this.cart.unshift(item);
         }
+        this.updateCart(this.cart);
       }
     },
     updateCart(updatedCart) {
       this.cart = updatedCart;
+      this.cartTotal = this.cart.reduce(
+        (total, item) => total + item.price * item.quantity,
+        0
+      );
     },
   },
   mounted() {
