@@ -8,7 +8,7 @@
     </div>
     <div class="product-details">
       <h1>{{ product.name }}</h1>
-      <p class="price">$ {{ product.price }}</p>
+      <p class="price">$ {{ product.price.toLocaleString() }}</p>
       <p class="description">{{ product.description }}</p>
       <add-to-cart @add-to-cart="handleAddToCart"></add-to-cart>
     </div>

@@ -7,7 +7,7 @@
           :alt="product.name"
         />
         <h3>{{ product.name }}</h3>
-        <p>$ {{ product.price }}</p>
+        <p>$ {{ product.price.toLocaleString() }}</p>
       </li>
     </ul>
   </div>
