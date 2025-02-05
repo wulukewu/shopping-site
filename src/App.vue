@@ -36,7 +36,7 @@ export default {
     };
   },
   mounted() {
-    fetch("/products.json")
+    fetch("/shopping-site/products.json")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
