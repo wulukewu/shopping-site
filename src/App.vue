@@ -39,7 +39,7 @@ export default {
             price: product.price,
             quantity,
           };
-          this.cart.push(item);
+          this.cart.unshift(item);
         }
       }
     },

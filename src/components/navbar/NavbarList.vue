@@ -18,6 +18,7 @@
         >
           {{ category.name }}
         </router-link>
+        <router-link to="/cart">Cart</router-link>
       </ul>
     </div>
   </div>
