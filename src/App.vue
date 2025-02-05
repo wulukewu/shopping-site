@@ -1,6 +1,8 @@
 <template>
   <navbar-list :categories="categories"></navbar-list>
-  <router-view :products="products"></router-view>
+  <div class="content">
+    <router-view :products="products"></router-view>
+  </div>
 </template>
 
 <script>
@@ -36,7 +38,8 @@ export default {
     };
   },
   mounted() {
-    const baseUrl = process.env.NODE_ENV === 'production' ? '/shopping-site' : '';
+    const baseUrl =
+      process.env.NODE_ENV === "production" ? "/shopping-site" : "";
     fetch(`${baseUrl}/products.json`)
       .then((response) => {
         if (!response.ok) {
@@ -62,5 +65,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 0;
+}
+
+.content {
+  margin-top: 90px;
 }
 </style>

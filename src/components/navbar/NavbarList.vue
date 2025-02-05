@@ -36,6 +36,10 @@ export default {
 
 <style scoped>
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   display: flex;
   padding: 0 20px;
   justify-content: space-between;
@@ -43,6 +47,7 @@ export default {
   background-color: #e8e8e8;
   height: 75px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 
 .navbar .logo {
@@ -69,6 +74,7 @@ export default {
   list-style: none;
   padding: 0;
   margin: 0;
+  padding-right: 20px;
 }
 
 .nav-links a {
