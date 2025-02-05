@@ -106,7 +106,7 @@ def image_generator(input_name, input_id):
     print(f'[INFO] Image generated for {input_name} with ID {input_id}.')
 
 # Load products from JSON file
-with open('../../src/components/products/products.json', 'r') as file:
+with open('../../public/products.json', 'r') as file:
     products = json.load(file)
 
 # Loop through each product in the array

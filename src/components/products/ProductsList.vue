@@ -44,6 +44,7 @@ export default {
     padding: 16px;
     width: 200px;
     text-align: center;
+    cursor: pointer;
 }
 
 .products img {
