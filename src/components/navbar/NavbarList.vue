@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar">
+  <div class="nav-belt">
     <div class="logo">
       <router-link to="/">
         <img
@@ -8,6 +8,8 @@
         />
       </router-link>
     </div>
+  </div>
+  <div class="nav-main">
     <div class="nav-links">
       <ul>
         <router-link to="/">Home</router-link>
@@ -36,35 +38,45 @@ export default {
 </script>
 
 <style scoped>
-.navbar {
+.nav-main,
+.nav-belt {
   position: fixed;
-  top: 0;
   left: 0;
   width: 100%;
   display: flex;
   padding: 0 20px;
   justify-content: space-between;
   align-items: center;
-  background-color: #e8e8e8;
-  height: 75px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 }
 
-.navbar .logo {
+.nav-belt {
+  top: 0;
+  height: 55px;
+  background-color: #cecece;
+}
+
+.nav-main {
+  top: 55px;
+  height: 50px;
+  background-color: #e8e8e8;
+}
+
+.nav-belt .logo {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
 }
 
-.navbar .logo a {
+.nav-belt .logo a {
   display: flex;
   align-items: center;
   height: 100%;
 }
 
-.navbar .logo img {
+.nav-belt .logo img {
   height: 60%;
   width: auto;
   object-fit: contain;

@@ -93,6 +93,6 @@ export default {
 }
 
 .content {
-  margin-top: 90px;
+  margin-top: 130px;
 }
 </style>
