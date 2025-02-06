@@ -60,8 +60,7 @@ export default {
 <style scoped>
 .products {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  justify-content: center;
 }
 
 .products ul {
@@ -71,6 +70,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  justify-content: center;
 }
 
 .products li {
