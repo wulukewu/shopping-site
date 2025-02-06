@@ -9,7 +9,7 @@ Check out the live demo of the project [here](https://wulukewu.github.io/shoppin
 
 - [ ] **Navbar:**
     - [x] Displays the shopping website's logo and name.
-    - [ ] Provides links to other pages.
+    - [x] Provides links to other pages.
     - [ ] Login link disappears (and becomes a "Sign Out" link) after the user logs in.
 
 - [ ] **Login Page:**
@@ -19,14 +19,14 @@ Check out the live demo of the project [here](https://wulukewu.github.io/shoppin
     - [ ] *(Bonus)* Integration with Google account login.
 
 - [ ] **Product Page:**
-    - [ ] Lists all available products.
-    - [ ] Displays product information such as name and price.
-    - [ ] "Add to Cart" functionality (requires login).
+    - [x] Lists all available products.
+    - [x] Displays product information such as name and price.
+    - [x] "Add to Cart" functionality (requires login).
     - [ ] *(Bonus)* Search functionality.
 
 - [ ] **Shopping Cart:**
     - [ ] Navbar includes a simple preview of the cart contents.
-    - [ ] Allows users to remove items from the cart.
+    - [x] Allows users to remove items from the cart.
     - [ ] Enables users to select items for purchase and proceed to checkout.
 
 ## Installation
