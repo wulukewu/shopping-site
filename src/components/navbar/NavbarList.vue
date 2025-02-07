@@ -8,6 +8,9 @@
         />
       </router-link>
     </div>
+    <div class="cart-container">
+      <router-link to="/cart" class="cart-link">Cart</router-link>
+    </div>
   </div>
   <div class="nav-main">
     <div class="nav-links">
@@ -20,7 +23,6 @@
         >
           {{ category.name }}
         </router-link>
-        <router-link to="/cart">Cart</router-link>
       </ul>
     </div>
   </div>
@@ -55,6 +57,22 @@ export default {
   top: 0;
   height: 55px;
   background-color: #cecece;
+}
+
+.cart-container {
+  position: relative;
+  margin-right: 40px;
+}
+
+.cart-link {
+  color: #2c3e50;
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration: none;
+}
+
+.cart-link:hover {
+  color: #5a74f7;
 }
 
 .nav-main {
