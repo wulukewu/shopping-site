@@ -44,7 +44,9 @@
     </div>
 
     <div class="cart-container">
-      <router-link to="/cart" class="cart-link">Cart</router-link>
+      <router-link to="/cart" class="cart-link"
+        ><i class="fas fa-cart-shopping"></i>Cart</router-link
+      >
     </div>
   </div>
 
@@ -129,7 +131,6 @@ export default {
 .cart-link {
   color: #2c3e50;
   font-weight: bold;
-  text-decoration: underline;
   text-decoration: none;
 }
 
@@ -213,6 +214,16 @@ export default {
 
 .profile-dropdown {
   position: relative;
+}
+
+.profile-link {
+  color: #2c3e50;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.profile-link:hover {
+  color: #5a74f7;
 }
 
 .dropdown-menu {
