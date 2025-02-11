@@ -53,11 +53,12 @@
   <div class="nav-main">
     <div class="nav-links">
       <ul>
-        <router-link to="/">Home</router-link>
+        <router-link to="/" exact-active-class="active">Home</router-link>
         <router-link
           v-for="category in categories"
           :key="category.id"
           :to="`/category/${category.id}`"
+          active-class="active"
         >
           {{ category.name }}
         </router-link>
