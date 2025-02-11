@@ -63,10 +63,7 @@ export default {
     },
   },
   mounted() {
-    // const baseUrl =
-    //     process.env.NODE_ENV === 'production' ? '/shopping-site' : '';
-    // fetch(`${baseUrl}/products.json`)
-    fetch('http://localhost:3000/products') // Fetch from your API
+    fetch('http://localhost:3000/products')
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
