@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import AddToCart from "../cart/AddToCart.vue";
+import AddToCart from '../cart/AddToCart.vue';
 
 export default {
   components: {
@@ -46,7 +46,7 @@ export default {
     };
   },
   watch: {
-    "$route.params.productId": {
+    '$route.params.productId': {
       immediate: true,
       handler() {
         this.updateProduct();
@@ -62,7 +62,7 @@ export default {
   methods: {
     updateProduct() {
       if (!this.products || this.products.length === 0) {
-        console.log("Products not yet loaded.  Deferring updateProduct."); // Products haven't loaded yet.
+        console.log('Products not yet loaded.  Deferring updateProduct.'); // Products haven't loaded yet.
         return;
       }
 

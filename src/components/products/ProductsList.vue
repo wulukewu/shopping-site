@@ -1,7 +1,11 @@
 <template>
   <div class="products">
     <ul>
-      <li v-for="product in filteredProducts" :key="product.id" @click="$router.push(`/product/${product.id}`)">
+      <li
+        v-for="product in filteredProducts"
+        :key="product.id"
+        @click="$router.push(`/product/${product.id}`)"
+      >
         <img
           :src="require(`@/components/products/images/${product.id}.png`)"
           :alt="product.name"
@@ -27,7 +31,7 @@ export default {
     };
   },
   watch: {
-    "$route.params.category": {
+    '$route.params.category': {
       immediate: true,
       handler(newCategory) {
         this.filterProducts(newCategory);

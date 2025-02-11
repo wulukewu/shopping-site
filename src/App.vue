@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import NavbarList from "./components/navbar/NavbarList.vue";
+import NavbarList from './components/navbar/NavbarList.vue';
 
 export default {
   components: {
@@ -21,14 +21,14 @@ export default {
   data() {
     return {
       categories: [
-        { id: "clothing", name: "Clothing" },
-        { id: "electronics", name: "Electronics" },
-        { id: "home-and-kitchen", name: "Home & Kitchen" },
-        { id: "accessories", name: "Accessories" },
-        { id: "shoes", name: "Shoes" },
-        { id: "books", name: "Books" },
-        { id: "furniture", name: "Furniture" },
-        { id: "sports-and-outdoors", name: "Sports & Outdoors" },
+        { id: 'clothing', name: 'Clothing' },
+        { id: 'electronics', name: 'Electronics' },
+        { id: 'home-and-kitchen', name: 'Home & Kitchen' },
+        { id: 'accessories', name: 'Accessories' },
+        { id: 'shoes', name: 'Shoes' },
+        { id: 'books', name: 'Books' },
+        { id: 'furniture', name: 'Furniture' },
+        { id: 'sports-and-outdoors', name: 'Sports & Outdoors' },
       ],
       products: [],
       cart: [],
@@ -64,7 +64,7 @@ export default {
   },
   mounted() {
     const baseUrl =
-      process.env.NODE_ENV === "production" ? "/shopping-site" : "";
+      process.env.NODE_ENV === 'production' ? '/shopping-site' : '';
     fetch(`${baseUrl}/products.json`)
       .then((response) => {
         if (!response.ok) {
@@ -76,7 +76,7 @@ export default {
         this.products = data;
       })
       .catch((error) => {
-        console.error("Error fetching products:", error);
+        console.error('Error fetching products:', error);
       });
   },
 };

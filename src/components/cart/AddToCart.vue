@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  emits: ["add-to-cart"],
+  emits: ['add-to-cart'],
   data() {
     return {
       quantity: 1,
@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     addToCart() {
-      this.$emit("add-to-cart", this.quantity);
+      this.$emit('add-to-cart', this.quantity);
     },
     decreaseQuantity() {
       if (this.quantity > 1) {
@@ -77,7 +77,7 @@ label {
   background-color: #0056b3;
 }
 
-.quantity-control input[type="number"] {
+.quantity-control input[type='number'] {
   width: 50px;
   padding: 5px;
   font-size: 1em;
@@ -88,8 +88,8 @@ label {
   border-radius: 5px;
 }
 
-.quantity-control input[type="number"]::-webkit-outer-spin-button,
-.quantity-control input[type="number"]::-webkit-inner-spin-button {
+.quantity-control input[type='number']::-webkit-outer-spin-button,
+.quantity-control input[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }

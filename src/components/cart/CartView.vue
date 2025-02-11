@@ -74,7 +74,7 @@ export default {
     updateCart() {
       // Trigger reactivity by creating a new array
       this.localCart = [...this.localCart];
-      this.$emit("update-cart", this.localCart);
+      this.$emit('update-cart', this.localCart);
     },
   },
 };
@@ -160,7 +160,7 @@ export default {
   background-color: #0056b3;
 }
 
-.quantity-control input[type="number"] {
+.quantity-control input[type='number'] {
   width: 50px;
   padding: 5px;
   font-size: 1em;
@@ -171,8 +171,8 @@ export default {
   border-radius: 5px;
 }
 
-.quantity-control input[type="number"]::-webkit-outer-spin-button,
-.quantity-control input[type="number"]::-webkit-inner-spin-button {
+.quantity-control input[type='number']::-webkit-outer-spin-button,
+.quantity-control input[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
