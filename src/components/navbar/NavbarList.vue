@@ -43,7 +43,7 @@
       </template>
     </div>
 
-    <div class="cart-container">
+    <div v-if="isLoggedIn" class="cart-container">
       <router-link to="/cart" class="cart-link"
         ><i class="fas fa-cart-shopping"></i>Cart</router-link
       >
@@ -108,6 +108,7 @@ export default {
 .nav-belt {
   position: fixed;
   left: 0;
+  right: 0;
   width: 100%;
   display: flex;
   padding: 0 20px;
@@ -121,11 +122,12 @@ export default {
   top: 0;
   height: 55px;
   background-color: #cecece;
+  width: auto;
 }
 
 .cart-container {
   position: relative;
-  margin-right: 40px;
+  margin-left: 20px;
 }
 
 .cart-link {
@@ -142,7 +144,7 @@ export default {
   top: 55px;
   height: 50px;
   background-color: #e8e8e8;
-  z-index: 1; /* Ensure the main navbar is below the dropdown menu */
+  z-index: 1;
 }
 
 .nav-belt .logo {
@@ -196,7 +198,7 @@ export default {
 
 .auth-buttons a,
 .auth-buttons button {
-  margin: 0 10px;
+  margin-left: 10px;
 }
 
 .logout-button {
