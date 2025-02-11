@@ -8,10 +8,46 @@
         />
       </router-link>
     </div>
+
+    <div class="auth-buttons">
+      <template v-if="isLoggedIn">
+        <div
+          class="profile-dropdown"
+          @mouseover="showDropdown"
+          @mouseleave="hideDropdown"
+        >
+          <router-link to="/profile" class="profile-link">
+            <i class="fas fa-user"></i> Profile
+          </router-link>
+          <div v-if="dropdownVisible" class="dropdown-menu">
+            <router-link to="/profile">View Profile</router-link>
+            <router-link to="/settings">Settings</router-link>
+            <button @click="logout" class="logout-button">Logout</button>
+          </div>
+        </div>
+      </template>
+      <template v-else>
+        <div
+          class="profile-dropdown"
+          @mouseover="showDropdown"
+          @mouseleave="hideDropdown"
+        >
+          <router-link to="/login"><i class="fas fa-user"></i></router-link>
+          <div v-if="dropdownVisible" class="dropdown-menu">
+            <router-link to="/login" class="login-link">Login</router-link>
+            <router-link to="/register" class="register-link"
+              >Register</router-link
+            >
+          </div>
+        </div>
+      </template>
+    </div>
+
     <div class="cart-container">
       <router-link to="/cart" class="cart-link">Cart</router-link>
     </div>
   </div>
+
   <div class="nav-main">
     <div class="nav-links">
       <ul>
@@ -36,6 +72,32 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      isLoggedIn: localStorage.getItem('token') !== null, // Check if token exists
+      dropdownVisible: false,
+    };
+  },
+  methods: {
+    logout() {
+      localStorage.removeItem('token'); // Remove the token
+      this.isLoggedIn = false; // Update the login status
+      this.$router.push('/login'); // Redirect to login page
+    },
+    showDropdown() {
+      this.dropdownVisible = true;
+    },
+    hideDropdown() {
+      this.dropdownVisible = false;
+    },
+  },
+  watch: {
+    // Watch for changes in localStorage.  Another component logging in/out will trigger the update
+    $route: function (to, from) {
+      console.log(to, from);
+      this.isLoggedIn = localStorage.getItem('token') !== null;
+    },
+  },
 };
 </script>
 
@@ -50,7 +112,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  z-index: 2;
 }
 
 .nav-belt {
@@ -79,6 +141,7 @@ export default {
   top: 55px;
   height: 50px;
   background-color: #e8e8e8;
+  z-index: 1; /* Ensure the main navbar is below the dropdown menu */
 }
 
 .nav-belt .logo {
@@ -121,6 +184,59 @@ export default {
 
 .nav-links a:hover,
 .nav-links a.active {
+  color: #007bff;
+}
+
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.auth-buttons a,
+.auth-buttons button {
+  margin: 0 10px;
+}
+
+.logout-button {
+  background-color: transparent;
+  border: none;
+  color: #2c3e50;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.logout-button:hover {
+  color: #5a74f7;
+}
+
+.profile-dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  z-index: 3;
+}
+
+.dropdown-menu a,
+.dropdown-menu button {
+  margin: 5px 0;
+  color: #2c3e50;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu button:hover {
   color: #007bff;
 }
 </style>
