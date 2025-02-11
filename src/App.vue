@@ -13,6 +13,7 @@
 
 <script>
 import NavbarList from './components/navbar/NavbarList.vue';
+import axios from 'axios';
 
 export default {
   components: {
@@ -36,7 +37,25 @@ export default {
     };
   },
   methods: {
+    async fetchProducts() {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get('/products', {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the JWT
+          },
+        });
+        this.products = response.data;
+      } catch (error) {
+        console.error('Error fetching products', error);
+      }
+    },
     addToCart(productId, quantity) {
+      if (!localStorage.getItem('token')) {
+        alert('Please log in to add items to your cart.');
+        this.$router.push('/login'); // Redirect to login
+        return;
+      }
       const product = this.products.find((product) => product.id === productId);
       if (product) {
         const cartItem = this.cart.find((item) => item.id === productId);
@@ -76,6 +95,7 @@ export default {
       .catch((error) => {
         console.error('Error fetching products:', error);
       });
+    this.fetchProducts();
   },
 };
 </script>
