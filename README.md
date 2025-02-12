@@ -2,6 +2,10 @@
 
 This project is a shopping website built using Vue.js for the frontend, Express.js for the backend, and a SQL database. It includes user login, product browsing, shopping cart, and checkout functionalities.
 
+## Backend Repository
+
+The backend repository for this project can be found [here](https://github.com/wulukewu/shopping-site-api).
+
 ## Demo
 
 Check out the live demo of the project [here](https://shopping-site.luke-ray.site).
@@ -128,4 +132,4 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the Apache-2.0 License.
