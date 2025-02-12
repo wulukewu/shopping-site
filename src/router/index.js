@@ -32,11 +32,27 @@ const routes = [
     path: '/login',
     name: 'LoginView',
     component: LoginView,
+    beforeEnter: (to, from, next) => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        next({ name: 'Home' });
+      } else {
+        next();
+      }
+    },
   },
   {
     path: '/register',
     name: 'RegisterView',
     component: RegisterView,
+    beforeEnter: (to, from, next) => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        next({ name: 'Home' });
+      } else {
+        next();
+      }
+    },
   },
 ];
 
