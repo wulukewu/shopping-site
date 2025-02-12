@@ -40,14 +40,14 @@ export default {
     async fetchProducts() {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(
-          `${process.env.VUE_APP_API_URL}/products`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`, // Include the JWT
-            },
-          }
-        );
+        // Access the API URL from the environment variable
+        const apiUrl = process.env.VUE_APP_API_URL;
+
+        const response = await axios.get(`${apiUrl}/products`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         this.products = response.data;
       } catch (error) {
         console.error('Error fetching products', error);
@@ -56,7 +56,7 @@ export default {
     addToCart(productId, quantity) {
       if (!localStorage.getItem('token')) {
         alert('Please log in to add items to your cart.');
-        this.$router.push('/login'); // Redirect to login
+        this.$router.push('/login');
         return;
       }
       const product = this.products.find((product) => product.id === productId);
@@ -99,7 +99,6 @@ export default {
   color: #2c3e50;
   margin-top: 0;
 }
-
 .content {
   margin-top: 130px;
 }
