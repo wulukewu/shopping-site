@@ -40,11 +40,14 @@ export default {
     async fetchProducts() {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('/products', {
-          headers: {
-            Authorization: `Bearer ${token}`, // Include the JWT
-          },
-        });
+        const response = await axios.get(
+          `${process.env.VUE_APP_API_URL}/products`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Include the JWT
+            },
+          }
+        );
         this.products = response.data;
       } catch (error) {
         console.error('Error fetching products', error);
@@ -82,19 +85,6 @@ export default {
     },
   },
   mounted() {
-    fetch('http://localhost:3000/products')
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        this.products = data;
-      })
-      .catch((error) => {
-        console.error('Error fetching products:', error);
-      });
     this.fetchProducts();
   },
 };
