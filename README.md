@@ -1,30 +1,28 @@
-# shopping-site
+# Shopping Site
+
 This project is a shopping website built using Vue.js for the frontend, Express.js for the backend, and a SQL database. It includes user login, product browsing, shopping cart, and checkout functionalities.
 
 ## Demo
 
-Check out the live demo of the project [here](https://wulukewu.github.io/shopping-site).
+Check out the live demo of the project [here](https://shopping-site.luke-ray.site).
 
 ## Features
 
-- [ ] **Navbar:**
+- [x] **Navbar:**
     - [x] Displays the shopping website's logo and name.
     - [x] Provides links to other pages.
     - [ ] Login link disappears (and becomes a "Sign Out" link) after the user logs in.
-
-- [ ] **Login Page:**
-    - [ ] Registration functionality (allows multiple accounts to be created).
-    - [ ] Login functionality.
-    - [ ] Accessible only when the user is not logged in.
+- [x] **Login Page:**
+    - [x] Registration functionality (allows multiple accounts to be created).
+    - [x] Login functionality.
+    - [x] Accessible only when the user is not logged in.
     - [ ] *(Bonus)* Integration with Google account login.
-
-- [ ] **Product Page:**
+- [x] **Product Page:**
     - [x] Lists all available products.
     - [x] Displays product information such as name and price.
     - [x] "Add to Cart" functionality (requires login).
     - [ ] *(Bonus)* Search functionality.
-
-- [ ] **Shopping Cart:**
+- [x] **Shopping Cart:**
     - [ ] Navbar includes a simple preview of the cart contents.
     - [x] Allows users to remove items from the cart.
     - [ ] Enables users to select items for purchase and proceed to checkout.
@@ -76,6 +74,16 @@ To build the project for production:
 ```bash
 npm run build
 ```
+
+## Environment Variables
+
+This project uses environment variables, particularly `VUE_APP_API_URL`, to configure the API endpoint.  Make sure to set this variable in your `.env` file at the root of your project.  For example:
+
+```
+VUE_APP_API_URL='http://localhost:3000'
+```
+
+Remember to restart your development server after changing the `.env` file.
 
 ## AI Image Generator for Product Images
 
