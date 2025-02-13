@@ -232,7 +232,7 @@ export default {
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  left: 0;
+  right: 0;
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
