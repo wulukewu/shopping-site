@@ -4,6 +4,8 @@ import ProductView from '../components/products/ProductView.vue';
 import CartView from '../components/cart/CartView.vue';
 import LoginView from '../components/auth/LoginView.vue';
 import RegisterView from '../components/auth/RegisterView.vue';
+import ProfileView from '../components/settings/ProfileView.vue';
+import SettingsView from '../components/settings/SettingsView.vue';
 
 const routes = [
   {
@@ -51,6 +53,32 @@ const routes = [
         next({ name: 'Home' });
       } else {
         next();
+      }
+    },
+  },
+  {
+    path: '/profile',
+    name: 'ProfileView',
+    component: ProfileView,
+    beforeEnter: (to, from, next) => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        next();
+      } else {
+        next({ name: 'LoginView' });
+      }
+    },
+  },
+  {
+    path: '/settings',
+    name: 'SettingsView',
+    component: SettingsView,
+    beforeEnter: (to, from, next) => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        next();
+      } else {
+        next({ name: 'LoginView' });
       }
     },
   },

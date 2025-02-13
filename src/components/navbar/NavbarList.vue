@@ -17,7 +17,7 @@
           @mouseleave="hideDropdown"
         >
           <router-link to="/profile" class="profile-link">
-            <i class="fas fa-user"></i> Profile
+            <i class="fas fa-user"></i>Profile
           </router-link>
           <div v-if="dropdownVisible" class="dropdown-menu">
             <router-link to="/profile">View Profile</router-link>
