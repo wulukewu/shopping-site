@@ -82,6 +82,7 @@ const routes = [
       }
     },
   },
+  { path: '/:notFound(.*)', redirect: '/' },
 ];
 
 const router = createRouter({
