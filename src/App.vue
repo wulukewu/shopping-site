@@ -34,16 +34,14 @@ export default {
       products: [],
       cart: [],
       cartTotal: 0,
+      apiUrl: process.env.VUE_APP_API_URL,
     };
   },
   methods: {
     async fetchProducts() {
       try {
         const token = localStorage.getItem('token');
-        // Access the API URL from the environment variable
-        const apiUrl = process.env.VUE_APP_API_URL;
-
-        const response = await axios.get(`${apiUrl}/products`, {
+        const response = await axios.get(`${this.apiUrl}/products`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -53,13 +51,60 @@ export default {
         console.error('Error fetching products', error);
       }
     },
+    async fetchCart() {
+      try {
+        const token = localStorage.getItem('token');
+        console.log("Token being sent: ", token);
+        const response = await axios.get(`${this.apiUrl}/cart`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        this.cart = response.data.items.map((item) => ({
+          id: item.productId._id,
+          name: item.productId.name,
+          price: item.productId.price,
+          quantity: item.quantity,
+        }));
+        this.updateCart(this.cart);
+      } catch (error) {
+        console.error('Error fetching cart:', error);
+      }
+    },
+
+    async updateBackendCart(updatedCart) {
+      try {
+        const token = localStorage.getItem('token');
+        await axios.delete(`${this.apiUrl}/cart`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        updatedCart.forEach(async (element) => {
+          await axios.post(
+            `${this.apiUrl}/cart/items`,
+            { productId: element.id, quantity: element.quantity },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+        });
+      } catch (error) {
+        console.error('Error updating cart to backend:', error);
+      }
+    },
     addToCart(productId, quantity) {
       if (!localStorage.getItem('token')) {
         alert('Please log in to add items to your cart.');
         this.$router.push('/login');
         return;
       }
+
       const product = this.products.find((product) => product.id === productId);
+
       if (product) {
         const cartItem = this.cart.find((item) => item.id === productId);
         if (cartItem) {
@@ -74,6 +119,7 @@ export default {
           this.cart.unshift(item);
         }
         this.updateCart(this.cart);
+        this.updateBackendCart(this.cart);
       }
     },
     updateCart(updatedCart) {
@@ -83,9 +129,35 @@ export default {
         0
       );
     },
+    async clearCart() {
+      try {
+        const token = localStorage.getItem('token');
+        await axios.delete(`${this.apiUrl}/cart`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        this.cart = [];
+        this.cartTotal = 0;
+      } catch (error) {
+        console.error('Error clearing cart:', error);
+      }
+    },
   },
-  mounted() {
+  async mounted() {
     this.fetchProducts();
+    if (localStorage.getItem('token')) {
+      await this.fetchCart();
+    }
+  },
+
+  watch: {
+    cart: {
+      deep: true,
+      handler() {
+        this.updateBackendCart(this.cart);
+      },
+    },
   },
 };
 </script>

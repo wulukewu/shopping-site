@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   props: {
     cart: {
@@ -47,6 +48,7 @@ export default {
   data() {
     return {
       localCart: [],
+      apiUrl: process.env.VUE_APP_API_URL,
     };
   },
   watch: {
@@ -59,16 +61,41 @@ export default {
     },
   },
   methods: {
-    decreaseQuantity(item) {
+    async decreaseQuantity(item) {
+      const token = localStorage.getItem('token');
       if (item.quantity > 1) {
         item.quantity--;
+        await axios.put(
+          `${this.apiUrl}/cart/items/${item.id}`,
+          { quantity: item.quantity },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
       } else {
         this.localCart.splice(this.localCart.indexOf(item), 1);
+        await axios.delete(`${this.apiUrl}/cart/items/${item.id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
       }
       this.updateCart();
     },
-    increaseQuantity(item) {
+    async increaseQuantity(item) {
+      const token = localStorage.getItem('token');
       item.quantity++;
+      await axios.put(
+        `${this.apiUrl}/cart/items/${item.id}`,
+        { quantity: item.quantity },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       this.updateCart();
     },
     updateCart() {
