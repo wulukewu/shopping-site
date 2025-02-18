@@ -9,6 +9,13 @@
       </router-link>
     </div>
 
+    <div class="search-bar">
+      <input type="text" placeholder="Search for products" v-model="searchQuery" @keyup.enter="doSearch" />
+      <button type="button" @click="doSearch">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+
     <div class="auth-buttons">
       <template v-if="isLoggedIn">
         <div
@@ -79,6 +86,7 @@ export default {
     return {
       isLoggedIn: localStorage.getItem('token') !== null, // Check if token exists
       dropdownVisible: false,
+      searchQuery: '',
     };
   },
   methods: {
@@ -93,6 +101,11 @@ export default {
     hideDropdown() {
       this.dropdownVisible = false;
     },
+    doSearch(){
+      if(this.searchQuery.trim()){
+        this.$router.push({ path: '/search', query: { q: this.searchQuery } });
+      }
+    }
   },
   watch: {
     // Watch for changes in localStorage.  Another component logging in/out will trigger the update

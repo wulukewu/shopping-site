@@ -34,29 +34,44 @@ export default {
     '$route.params.category': {
       immediate: true,
       handler(newCategory) {
-        this.filterProducts(newCategory);
+        this.filterProducts(newCategory, this.$route.query.q);
+      },
+    },
+    '$route.query.q': {
+      immediate: true,
+      handler(newQuery) {
+        this.filterProducts(this.$route.params.category, newQuery);
       },
     },
     products: {
       immediate: true,
       handler() {
-        this.filterProducts(this.$route.params.category);
+        this.filterProducts(this.$route.params.category, this.$route.query.q);
       },
     },
   },
   methods: {
-    filterProducts(category) {
+    filterProducts(category, query) {
+      let filtered = this.products;
+
       if (category) {
-        this.filteredProducts = this.products.filter((product) =>
+        filtered = filtered.filter((product) =>
           product.category.includes(category)
         );
-      } else {
-        this.filteredProducts = this.products;
       }
+
+      if (query) {
+        const lowerCaseQuery = query.toLowerCase();
+        filtered = filtered.filter((product) =>
+          product.name.toLowerCase().includes(lowerCaseQuery)
+        );
+      }
+
+      this.filteredProducts = filtered;
     },
   },
   mounted() {
-    this.filterProducts(this.$route.params.category);
+    this.filterProducts(this.$route.params.category, this.$route.query.q);
   },
 };
 </script>
