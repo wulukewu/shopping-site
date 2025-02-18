@@ -25,7 +25,7 @@ Check out the live demo of the project [here](https://shopping-site.luke-ray.sit
     - [x] Lists all available products.
     - [x] Displays product information such as name and price.
     - [x] "Add to Cart" functionality (requires login).
-    - [ ] *(Bonus)* Search functionality.
+    - [x] *(Bonus)* Search functionality.
 - [x] **Shopping Cart:**
     - [ ] Navbar includes a simple preview of the cart contents.
     - [x] Allows users to remove items from the cart.
