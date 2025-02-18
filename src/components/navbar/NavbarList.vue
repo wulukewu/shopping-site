@@ -1,7 +1,7 @@
 <template>
   <div class="nav-belt">
     <div class="logo">
-      <router-link to="/">
+      <router-link to="/" @click="searchQuery = ''">
         <img
           alt="shopping logo"
           src="../../assets/logo/shopping-high-resolution-logo-transparent.png"
@@ -10,7 +10,12 @@
     </div>
 
     <div class="search-bar">
-      <input type="text" placeholder="Search for products" v-model="searchQuery" @keyup.enter="doSearch" />
+      <input
+        type="text"
+        placeholder="Search for products"
+        v-model="searchQuery"
+        @keyup.enter="doSearch"
+      />
       <button type="button" @click="doSearch">
         <i class="fas fa-search"></i>
       </button>
@@ -101,11 +106,11 @@ export default {
     hideDropdown() {
       this.dropdownVisible = false;
     },
-    doSearch(){
-      if(this.searchQuery.trim()){
+    doSearch() {
+      if (this.searchQuery.trim()) {
         this.$router.push({ path: '/search', query: { q: this.searchQuery } });
       }
-    }
+    },
   },
   watch: {
     // Watch for changes in localStorage.  Another component logging in/out will trigger the update
@@ -265,5 +270,40 @@ export default {
 .dropdown-menu a:hover,
 .dropdown-menu button:hover {
   color: #007bff;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin: 0 20px;
+  border-radius: 5px;
+  overflow: hidden; /* Prevents the input/button from overflowing the rounded corners */
+  border: 1px solid #ccc; /* Added a subtle border */
+}
+
+.search-bar input {
+  padding: 8px 12px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  flex-grow: 1; /* Allows the input to take up the remaining space */
+}
+
+.search-bar button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+  background-color: #0056b3;
+}
+
+.search-bar i {
+  margin: 0;
 }
 </style>
