@@ -13,7 +13,6 @@
 
 <script>
 import NavbarList from './components/navbar/NavbarList.vue';
-import axios from 'axios';
 
 export default {
   components: {
@@ -40,19 +39,28 @@ export default {
     async fetchProducts() {
       try {
         const token = localStorage.getItem('token');
-        // Access the API URL from the environment variable
         const apiUrl = process.env.VUE_APP_API_URL;
 
-        const response = await axios.get(`${apiUrl}/products`, {
+        const response = await fetch(`${apiUrl}/products`, {
+          method: 'GET',
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`, // Important: Include the token!
+            'Content-Type': 'application/json', // Specify content type
           },
         });
-        this.products = response.data;
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`); // Handle non-200 responses
+        }
+
+        const data = await response.json(); // Parse JSON response
+        this.products = data;
       } catch (error) {
-        console.error('Error fetching products', error);
+        console.error('Error fetching products:', error);
+        // Optionally set an error state to display an error message to the user
       }
     },
+
     addToCart(productId, quantity) {
       if (!localStorage.getItem('token')) {
         alert('Please log in to add items to your cart.');
@@ -99,6 +107,7 @@ export default {
   color: #2c3e50;
   margin-top: 0;
 }
+
 .content {
   margin-top: 130px;
 }

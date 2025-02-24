@@ -20,8 +20,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
   data() {
     return {
@@ -33,17 +31,32 @@ export default {
   methods: {
     async login() {
       try {
-        const response = await axios.post(`${process.env.VUE_APP_API_URL}/login`, {
-          username: this.username,
-          password: this.password,
+        const apiUrl = process.env.VUE_APP_API_URL;
+
+        const response = await fetch(`${apiUrl}/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: this.username,
+            password: this.password,
+          }),
         });
 
-        // Store the token in localStorage or a Vuex store
-        localStorage.setItem('token', response.data.token);
-        console.log('Login successful. Token:', response.data.token);
-        this.$router.push('/'); // Redirect to home page after successful login
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(
+            errorData.message || `Login failed with status: ${response.status}`
+          );
+        }
+
+        const data = await response.json();
+        localStorage.setItem('token', data.token);
+        console.log('Login successful. Token:', data.token);
+        this.$router.push('/');
       } catch (error) {
-        this.error = error.response?.data?.message || 'Login failed';
+        this.error = error.message || 'Login failed';
         console.error('Login error:', error);
       }
     },
