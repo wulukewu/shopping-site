@@ -24,8 +24,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
   data() {
     return {
@@ -38,15 +36,33 @@ export default {
   methods: {
     async register() {
       try {
-        const response = await axios.post(`${process.env.VUE_APP_API_URL}/register`, {
-          username: this.username,
-          password: this.password,
-          email: this.email,
+        const apiUrl = process.env.VUE_APP_API_URL;
+
+        const response = await fetch(`${apiUrl}/register`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: this.username,
+            password: this.password,
+            email: this.email,
+          }),
         });
-        console.log(response.data); // Log the response from the server
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(
+            errorData.message ||
+              `Registration failed with status: ${response.status}`
+          );
+        }
+
+        const data = await response.json();
+        console.log(data); // Log the response from the server
         this.$router.push('/login'); // Redirect to login page after successful registration
       } catch (error) {
-        this.error = error.response?.data?.message || 'Registration failed';
+        this.error = error.message || 'Registration failed';
         console.error('Registration error:', error);
       }
     },

@@ -5,16 +5,14 @@
       <p><strong>Username:</strong> {{ username }}</p>
       <p><strong>Email:</strong> {{ email }}</p>
     </div>
-
     <button @click="$router.push('/settings')" class="edit-button">
       Edit Profile
     </button>
+    <p v-if="error" class="error">{{ error }}</p>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
   data() {
     return {
@@ -28,20 +26,46 @@ export default {
       const token = localStorage.getItem('token');
       const apiUrl = process.env.VUE_APP_API_URL;
 
-      const response = await axios.get(`${apiUrl}/protected`, {
-        headers: { Authorization: `Bearer ${token}` },
+      // Fetch protected data to get user ID
+      const response = await fetch(`${apiUrl}/protected`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
       });
 
-      const userId = response.data.userId;
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(
+          errorData.message ||
+            `Failed to fetch protected data: ${response.status}`
+        );
+      }
 
-      const userResponse = await axios.get(`${apiUrl}/users/${userId}`, {
-        headers: { Authorization: `Bearer ${token}` },
+      const protectedData = await response.json();
+      const userId = protectedData.userId;
+
+      // Fetch user data using the user ID
+      const userResponse = await fetch(`${apiUrl}/users/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
       });
-      this.username = userResponse.data.username;
-      this.email = userResponse.data.email;
+
+      if (!userResponse.ok) {
+        const errorData = await userResponse.json();
+        throw new Error(
+          errorData.message ||
+            `Failed to fetch user data: ${userResponse.status}`
+        );
+      }
+
+      const userData = await userResponse.json();
+      this.username = userData.username;
+      this.email = userData.email;
     } catch (error) {
-      this.error =
-        error.response?.data?.message || 'Failed to load profile data';
+      this.error = error.message || 'Failed to load profile data';
       console.error('Error loading profile:', error);
     }
   },
@@ -87,5 +111,9 @@ export default {
 
 .edit-button:hover {
   background-color: #0056b3;
+}
+.error {
+  color: red;
+  margin-top: 10px;
 }
 </style>

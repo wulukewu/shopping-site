@@ -1,17 +1,14 @@
 <template>
   <div class="settings-container">
     <h2>Settings</h2>
-
     <div class="form-group">
       <label for="username">New Username:</label>
       <input type="text" id="username" v-model="newUsername" />
     </div>
-
     <div class="form-group">
       <label for="password">New Password:</label>
       <input type="password" id="password" v-model="newPassword" />
     </div>
-
     <button @click="updateProfile" class="save-button">Save Changes</button>
     <p v-if="successMessage" class="success">{{ successMessage }}</p>
     <p v-if="error" class="error">{{ error }}</p>
@@ -19,8 +16,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
   data() {
     return {
@@ -43,19 +38,29 @@ export default {
         if (this.newPassword) {
           updateData.password = this.newPassword;
         }
-        const response = await axios.put(
-          `${apiUrl}/users/profile`,
-          updateData,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
-        this.successMessage =
-          response.data.message || 'Profile updated successfully!';
+
+        const response = await fetch(`${apiUrl}/users/profile`, {
+          method: 'PUT',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(updateData),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(
+            errorData.message || `Profile update failed: ${response.status}`
+          );
+        }
+
+        const data = await response.json();
+
+        this.successMessage = data.message || 'Profile updated successfully!';
         this.error = null;
       } catch (error) {
-        this.error =
-          error.response?.data?.message || 'Failed to update profile.';
+        this.error = error.message || 'Failed to update profile.';
         this.successMessage = null;
         console.error('Profile update error:', error);
       }
