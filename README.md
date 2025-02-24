@@ -15,7 +15,7 @@ Check out the live demo of the project [here](https://shopping-site.luke-ray.sit
 - [x] **Navbar:**
     - [x] Displays the shopping website's logo and name.
     - [x] Provides links to other pages.
-    - [ ] Login link disappears (and becomes a "Sign Out" link) after the user logs in.
+    - [x] Login link disappears (and becomes a "Sign Out" link) after the user logs in.
 - [x] **Login Page:**
     - [x] Registration functionality (allows multiple accounts to be created).
     - [x] Login functionality.
@@ -27,7 +27,7 @@ Check out the live demo of the project [here](https://shopping-site.luke-ray.sit
     - [x] "Add to Cart" functionality (requires login).
     - [x] *(Bonus)* Search functionality.
 - [x] **Shopping Cart:**
-    - [ ] Navbar includes a simple preview of the cart contents.
+    - [x] Navbar includes a simple preview of the cart contents.
     - [x] Allows users to remove items from the cart.
     - [ ] Enables users to select items for purchase and proceed to checkout.
 

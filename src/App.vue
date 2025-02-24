@@ -1,5 +1,5 @@
 <template>
-  <navbar-list :categories="categories"></navbar-list>
+  <navbar-list :categories="categories" :cart="cart"></navbar-list>
   <div class="content">
     <router-view
       :products="products"

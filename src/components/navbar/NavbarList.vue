@@ -8,7 +8,6 @@
         />
       </router-link>
     </div>
-
     <div class="search-bar">
       <input
         type="text"
@@ -20,7 +19,6 @@
         <i class="fas fa-search"></i>
       </button>
     </div>
-
     <div class="auth-buttons">
       <template v-if="isLoggedIn">
         <div
@@ -29,7 +27,8 @@
           @mouseleave="hideDropdown"
         >
           <router-link to="/profile" class="profile-link">
-            <i class="fas fa-user"></i>Profile
+            <i class="fas fa-user"></i>
+            Profile
           </router-link>
           <div v-if="dropdownVisible" class="dropdown-menu">
             <router-link to="/profile">View Profile</router-link>
@@ -54,14 +53,14 @@
         </div>
       </template>
     </div>
-
     <div v-if="isLoggedIn" class="cart-container">
-      <router-link to="/cart" class="cart-link"
-        ><i class="fas fa-cart-shopping"></i>Cart</router-link
-      >
+      <router-link to="/cart" class="cart-link">
+        <i class="fas fa-cart-shopping"></i>
+        <span v-if="cartCount > 0" class="cart-count">{{ cartCount }}</span>
+        Cart
+      </router-link>
     </div>
   </div>
-
   <div class="nav-main">
     <div class="nav-links">
       <ul>
@@ -86,19 +85,28 @@ export default {
       type: Array,
       required: true,
     },
+    cart: {
+      type: Array,
+      required: true,
+    },
   },
   data() {
     return {
-      isLoggedIn: localStorage.getItem('token') !== null, // Check if token exists
+      isLoggedIn: localStorage.getItem('token') !== null,
       dropdownVisible: false,
       searchQuery: '',
     };
   },
+  computed: {
+    cartCount() {
+      return this.cart.reduce((total, item) => total + item.quantity, 0);
+    },
+  },
   methods: {
     logout() {
-      localStorage.removeItem('token'); // Remove the token
-      this.isLoggedIn = false; // Update the login status
-      this.$router.push('/login'); // Redirect to login page
+      localStorage.removeItem('token');
+      this.isLoggedIn = false;
+      this.$router.push('/login');
     },
     showDropdown() {
       this.dropdownVisible = true;
@@ -113,7 +121,6 @@ export default {
     },
   },
   watch: {
-    // Watch for changes in localStorage.  Another component logging in/out will trigger the update
     $route: function (to, from) {
       console.log(to, from);
       this.isLoggedIn = localStorage.getItem('token') !== null;
@@ -153,10 +160,26 @@ export default {
   color: #2c3e50;
   font-weight: bold;
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
 }
 
 .cart-link:hover {
   color: #5a74f7;
+}
+
+.cart-count {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.8em;
+  position: relative;
+  top: -0.5em;
+  margin: 0;
+  margin-left: 5px;
+  margin-right: -10px;
+  left: -10px;
 }
 
 .nav-main {
@@ -277,8 +300,8 @@ export default {
   align-items: center;
   margin: 0 20px;
   border-radius: 5px;
-  overflow: hidden; /* Prevents the input/button from overflowing the rounded corners */
-  border: 1px solid #ccc; /* Added a subtle border */
+  overflow: hidden;
+  border: 1px solid #ccc;
 }
 
 .search-bar input {
@@ -286,7 +309,7 @@ export default {
   border: none;
   outline: none;
   font-size: 16px;
-  flex-grow: 1; /* Allows the input to take up the remaining space */
+  flex-grow: 1;
 }
 
 .search-bar button {
