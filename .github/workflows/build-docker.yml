@@ -1,4 +1,4 @@
-name: Build and Push Store Image to GitHub Packages
+name: Build and Push Docker Image to GitHub Packages
 
 on:
   push:
@@ -7,14 +7,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  push-store-image:
+  build-and-push-image:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: './'
 
     steps:
-      - name: Checkout GitHub Action
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Login to GitHub Container Registry
@@ -24,7 +21,18 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.PAT }}
 
-      - name: Build Inventory Image
+      - name: Build and Push Docker Image
+        id: build-and-push
+        env:
+          IMAGE_NAME: ghcr.io/${{ github.repository }}:${{ github.sha }}
         run: |
-          docker build -t ghcr.io/${{ github.repository }}:latest .
+          docker build -t $IMAGE_NAME .
+          docker push $IMAGE_NAME
+          echo "image=$IMAGE_NAME" >> $GITHUB_OUTPUT  # Store the image name for later use (optional)
+
+      - name: Latest Tag (Optional)
+        if: github.ref == 'refs/heads/main' #Only add "latest" tag on main branch
+        run: |
+          docker pull ${{ steps.build-and-push.outputs.image }}
+          docker tag ${{ steps.build-and-push.outputs.image }} ghcr.io/${{ github.repository }}:latest
           docker push ghcr.io/${{ github.repository }}:latest
