@@ -9,16 +9,15 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }} # This will be "owner/repository"
-  DOCKERFILE_PATH: Dockerfile # Path to your Dockerfile. Modify if different
-  IMAGE_TAG: ${{ github.ref_name }} # Use the tag as the image tag
+  IMAGE_NAME: ${{ github.repository }}
+  DOCKERFILE_PATH: Dockerfile
 
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write  # Important: Grants permission to write to GitHub Packages
+      packages: write
 
     steps:
       - name: Checkout repository
@@ -28,14 +27,18 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }} # GitHub Actions provides this
-          password: ${{ secrets.PAT }}  # Personal Access Token with 'write:packages' scope
+          username: ${{ github.actor }}
+          password: ${{ secrets.PAT }}
 
       - name: Build and push Docker image
         id: build-and-push
         run: |
+          # Determine the image tag based on the branch
+          BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          IMAGE_TAG=$BRANCH_NAME
+
           # Construct the full image name
-          IMAGE_FULL_NAME=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+          IMAGE_FULL_NAME=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$IMAGE_TAG
           echo "Building image: $IMAGE_FULL_NAME"
 
           # Build the Docker image
@@ -47,4 +50,4 @@ jobs:
           # Push the Docker image to GitHub Packages
           docker push "$IMAGE_FULL_NAME"
 
-          echo "::set-output name=image::$IMAGE_FULL_NAME" # Set output for later use
+          echo "::set-output name=image::$IMAGE_FULL_NAME"
