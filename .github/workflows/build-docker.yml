@@ -3,7 +3,8 @@ name: Build and Push Docker Image to GitHub Packages
 on:
   push:
     branches:
-        - main
+      - main
+      - dev-docker
   workflow_dispatch:
 
 env:
