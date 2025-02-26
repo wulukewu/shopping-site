@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - dev-docker
   workflow_dispatch:
 
 env:
@@ -46,4 +45,3 @@ jobs:
           context: .
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.BRANCH_NAME }}
-          #labels: ${{ steps.meta.outputs.labels }} # Removed as not required
