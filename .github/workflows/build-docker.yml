@@ -30,24 +30,20 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.PAT }}
 
+      - name: Extract branch name
+        id: extract_branch
+        run: |
+          BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
       - name: Build and push Docker image
         id: build-and-push
-        run: |
-          # Determine the image tag based on the branch
-          BRANCH_NAME=${GITHUB_REF#refs/heads/}
-          IMAGE_TAG=$BRANCH_NAME
-
-          # Construct the full image name
-          IMAGE_FULL_NAME=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$IMAGE_TAG
-          echo "Building image: $IMAGE_FULL_NAME"
-
-          # Build the Docker image
-          docker build \
-            --file ${{ env.DOCKERFILE_PATH }} \
-            --tag "$IMAGE_FULL_NAME" \
-            .
-
-          # Push the Docker image to GitHub Packages
-          docker push "$IMAGE_FULL_NAME"
-
-          echo "::set-output name=image::$IMAGE_FULL_NAME"
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.BRANCH_NAME }}
+          #labels: ${{ steps.meta.outputs.labels }} # Removed as not required
