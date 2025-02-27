@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/wulukewu/shopping-site/compare/v1.0.0...v1.0.1) (2025-02-27)
+
+
+### Bug Fixes
+
+* router use relative path ([9e01b0c](https://github.com/wulukewu/shopping-site/commit/9e01b0cac276ad50c6552ad25e5e301c2abc0620))
+
 ## 1.0.0 (2025-02-26)
 
 
