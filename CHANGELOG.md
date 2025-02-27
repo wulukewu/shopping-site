@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/wulukewu/shopping-site/compare/v1.0.1...v1.0.2) (2025-02-27)
+
+
+### Bug Fixes
+
+* console log apiUrl ([cb38052](https://github.com/wulukewu/shopping-site/commit/cb38052820f28ec88f1da5c72771110a0fa4881b))
+
 ## [1.0.1](https://github.com/wulukewu/shopping-site/compare/v1.0.0...v1.0.1) (2025-02-27)
 
 
