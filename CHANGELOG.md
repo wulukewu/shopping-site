@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/wulukewu/shopping-site/compare/v1.0.3...v1.0.4) (2025-02-27)
+
+
+### Bug Fixes
+
+* back to publicPath with / ([e487766](https://github.com/wulukewu/shopping-site/commit/e487766e9a2d5ef0c1a2734c668133111b1c828e))
+
 ## [1.0.3](https://github.com/wulukewu/shopping-site/compare/v1.0.2...v1.0.3) (2025-02-27)
 
 
