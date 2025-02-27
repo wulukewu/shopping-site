@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/wulukewu/shopping-site/compare/v1.0.2...v1.0.3) (2025-02-27)
+
+
+### Bug Fixes
+
+* add VUE_APP_API_URL arg to docker ([1b9af97](https://github.com/wulukewu/shopping-site/commit/1b9af970c0d58ef5a50f6def3fa6be7b07599f1b))
+
 ## [1.0.2](https://github.com/wulukewu/shopping-site/compare/v1.0.1...v1.0.2) (2025-02-27)
 
 
