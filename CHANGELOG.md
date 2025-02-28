@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.6](https://github.com/wulukewu/shopping-site/compare/v1.0.5...v1.0.6) (2025-02-28)
+
+
+### Bug Fixes
+
+* remove default VUE_APP_API_URL when building docker image ([9ff1931](https://github.com/wulukewu/shopping-site/commit/9ff19312861fb4c7c24748e844f07bc56461c011))
+
 ## [1.0.5](https://github.com/wulukewu/shopping-site/compare/v1.0.4...v1.0.5) (2025-02-28)
 
 
