@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.5](https://github.com/wulukewu/shopping-site/compare/v1.0.4...v1.0.5) (2025-02-28)
+
+
+### Bug Fixes
+
+* store apiUrl in data ([d0effd9](https://github.com/wulukewu/shopping-site/commit/d0effd9d5f25c336ced1ef97fc327d9d74162e8b))
+
 ## [1.0.4](https://github.com/wulukewu/shopping-site/compare/v1.0.3...v1.0.4) (2025-02-27)
 
 
