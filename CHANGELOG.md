@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.11](https://github.com/wulukewu/shopping-site/compare/v1.0.10...v1.0.11) (2025-02-28)
+
+
+### Bug Fixes
+
+* revert changes of setting env ([b0ada59](https://github.com/wulukewu/shopping-site/commit/b0ada59e77d772ed41d20a9b899cc611f8425a47))
+
 ## [1.0.10](https://github.com/wulukewu/shopping-site/compare/v1.0.9...v1.0.10) (2025-02-28)
 
 
