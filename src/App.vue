@@ -33,7 +33,7 @@ export default {
       products: [],
       cart: [],
       cartTotal: 0,
-      apiUrl: '__VUE_APP_API_URL__',
+      apiUrl: 'VUE_APP_API_URL_PLACEHOLDER',
     };
   },
   methods: {
@@ -59,7 +59,6 @@ export default {
         console.error('Error fetching products:', error);
       }
     },
-
     addToCart(productId, quantity) {
       if (!localStorage.getItem('token')) {
         alert('Please log in to add items to your cart.');

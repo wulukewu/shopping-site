@@ -25,7 +25,7 @@ RUN npm run build
 # Use a lightweight web server image (e.g., nginx)
 FROM nginx:alpine
 
-# Install envsubst (needed for environment variable substitution)
+# Install gettext (needed for environment variable substitution)
 RUN apk add --no-cache gettext
 
 # Copy the built application from the builder stage
@@ -34,12 +34,12 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 # Copy the nginx configuration file
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Create a startup script to run envsubst before nginx starts
-COPY docker-entrypoint.sh /docker-entrypoint.sh
+# Copy the substitution script and make it executable
+COPY substitute_environment_variables.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
 # Expose port 80 (the default port for nginx)
 EXPOSE 80
 
 # Use the entrypoint script to start nginx
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["/docker-entrypoint.sh", "nginx", "-g", "daemon off;"]
