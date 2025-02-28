@@ -14,10 +14,10 @@ RUN npm install
 COPY . .
 
 # Declare VUE_APP_API_URL as an argument and define a default
-# ARG VUE_APP_API_URL='http://localhost:3000' # Default if not provided
+ARG VUE_APP_API_URL='http://localhost:3000' # Default if not provided
 
 # Set the environment variable during the build
-# ENV VUE_APP_API_URL=$VUE_APP_API_URL
+ENV VUE_APP_API_URL=$VUE_APP_API_URL
 
 # Build the Vue.js application
 RUN npm run build
@@ -25,22 +25,14 @@ RUN npm run build
 # Use a lightweight web server image (e.g., nginx)
 FROM nginx:alpine
 
-# Install gettext (needed for environment variable substitution)
-RUN apk add --no-cache gettext
-
 # Copy the built application from the builder stage
 COPY --from=builder /app/dist /usr/share/nginx/html
-
-# Copy the nginx configuration file
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Copy the substitution script and make it executable
-COPY substitute_environment_variables.sh /docker-entrypoint.sh
-
-RUN chmod +x /docker-entrypoint.sh
 
 # Expose port 80 (the default port for nginx)
 EXPOSE 80
 
-# Use the entrypoint script to start nginx
-ENTRYPOINT ["/docker-entrypoint.sh"]
+# If you need to configure nginx beyond the basics
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Nginx starts automatically on container start,
+# so no CMD instruction is needed.

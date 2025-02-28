@@ -13,6 +13,7 @@
 
 <script>
 import NavbarList from './components/navbar/NavbarList.vue';
+
 export default {
   components: {
     NavbarList,
@@ -32,32 +33,35 @@ export default {
       products: [],
       cart: [],
       cartTotal: 0,
-      apiUrl: 'VUE_APP_API_URL_PLACEHOLDER',
     };
   },
   methods: {
     async fetchProducts() {
       try {
         const token = localStorage.getItem('token');
-
-        console.log('api URL:', this.apiUrl);
-        const response = await fetch(`${this.apiUrl}/products`, {
+        const apiUrl = process.env.VUE_APP_API_URL;
+        
+        console.log('api URL:', apiUrl);
+        const response = await fetch(`${apiUrl}/products`, {
           method: 'GET',
           headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`, // Important: Include the token!
+            'Content-Type': 'application/json', // Specify content type
           },
         });
 
         if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+          throw new Error(`HTTP error! Status: ${response.status}`); // Handle non-200 responses
         }
-        const data = await response.json();
+
+        const data = await response.json(); // Parse JSON response
         this.products = data;
       } catch (error) {
         console.error('Error fetching products:', error);
+        // Optionally set an error state to display an error message to the user
       }
     },
+
     addToCart(productId, quantity) {
       if (!localStorage.getItem('token')) {
         alert('Please log in to add items to your cart.');
@@ -90,7 +94,6 @@ export default {
     },
   },
   mounted() {
-    this.apiUrl = process.env.VUE_APP_API_URL;
     this.fetchProducts();
   },
 };
