@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.10](https://github.com/wulukewu/shopping-site/compare/v1.0.9...v1.0.10) (2025-02-28)
+
+
+### Bug Fixes
+
+* deal with env refer to https://moreillon.medium.com/environment-variables-for-containerized-vue-js-applications-f0aa943cb962 ([32df144](https://github.com/wulukewu/shopping-site/commit/32df144d0d00ec70e2f1e250bef721b388bd3dad))
+
 ## [1.0.9](https://github.com/wulukewu/shopping-site/compare/v1.0.8...v1.0.9) (2025-02-28)
 
 
