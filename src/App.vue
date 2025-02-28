@@ -33,16 +33,17 @@ export default {
       products: [],
       cart: [],
       cartTotal: 0,
+      apiUrl: process.env.VUE_APP_API_URL,
     };
   },
   methods: {
     async fetchProducts() {
       try {
         const token = localStorage.getItem('token');
-        const apiUrl = process.env.VUE_APP_API_URL;
-        
-        console.log('api URL:', apiUrl);
-        const response = await fetch(`${apiUrl}/products`, {
+        //const apiUrl = process.env.VUE_APP_API_URL;
+
+        console.log('api URL:', this.apiUrl);
+        const response = await fetch(`${this.apiUrl}/products`, {
           method: 'GET',
           headers: {
             Authorization: `Bearer ${token}`, // Important: Include the token!
