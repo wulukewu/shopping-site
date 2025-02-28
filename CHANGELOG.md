@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.8](https://github.com/wulukewu/shopping-site/compare/v1.0.7...v1.0.8) (2025-02-28)
+
+
+### Bug Fixes
+
+* enter from docker-entrypoint.sh ([8ba9cdf](https://github.com/wulukewu/shopping-site/commit/8ba9cdf613aac3888d61cd917e57f9b134c8d162))
+
 ## [1.0.7](https://github.com/wulukewu/shopping-site/compare/v1.0.6...v1.0.7) (2025-02-28)
 
 
