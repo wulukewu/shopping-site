@@ -33,33 +33,30 @@ export default {
       products: [],
       cart: [],
       cartTotal: 0,
-      apiUrl: process.env.VUE_APP_API_URL,
+      apiUrl: '__VUE_APP_API_URL__',
     };
   },
   methods: {
     async fetchProducts() {
       try {
         const token = localStorage.getItem('token');
-        //const apiUrl = process.env.VUE_APP_API_URL;
 
         console.log('api URL:', this.apiUrl);
         const response = await fetch(`${this.apiUrl}/products`, {
           method: 'GET',
           headers: {
-            Authorization: `Bearer ${token}`, // Important: Include the token!
-            'Content-Type': 'application/json', // Specify content type
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
           },
         });
 
         if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`); // Handle non-200 responses
+          throw new Error(`HTTP error! Status: ${response.status}`);
         }
-
-        const data = await response.json(); // Parse JSON response
+        const data = await response.json();
         this.products = data;
       } catch (error) {
         console.error('Error fetching products:', error);
-        // Optionally set an error state to display an error message to the user
       }
     },
 
@@ -95,6 +92,7 @@ export default {
     },
   },
   mounted() {
+    this.apiUrl = process.env.VUE_APP_API_URL;
     this.fetchProducts();
   },
 };
