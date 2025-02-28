@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.9](https://github.com/wulukewu/shopping-site/compare/v1.0.8...v1.0.9) (2025-02-28)
+
+
+### Bug Fixes
+
+* substitute_environment_variables ([5d80597](https://github.com/wulukewu/shopping-site/commit/5d80597d589809c0b194d52b743e15a7dccc4a5f))
+
 ## [1.0.8](https://github.com/wulukewu/shopping-site/compare/v1.0.7...v1.0.8) (2025-02-28)
 
 
