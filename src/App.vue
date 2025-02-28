@@ -13,7 +13,6 @@
 
 <script>
 import NavbarList from './components/navbar/NavbarList.vue';
-
 export default {
   components: {
     NavbarList,

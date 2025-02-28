@@ -36,10 +36,11 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy the substitution script and make it executable
 COPY substitute_environment_variables.sh /docker-entrypoint.sh
+
 RUN chmod +x /docker-entrypoint.sh
 
 # Expose port 80 (the default port for nginx)
 EXPOSE 80
 
 # Use the entrypoint script to start nginx
-ENTRYPOINT ["/docker-entrypoint.sh", "nginx", "-g", "daemon off;"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
