@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.12](https://github.com/wulukewu/shopping-site/compare/v1.0.11...v1.0.12) (2025-03-01)
+
+
+### Bug Fixes
+
+* disable arg VUE_APP_API_URL and load it from env ([9bfe3bb](https://github.com/wulukewu/shopping-site/commit/9bfe3bb1fc1d04f44474f88bece708bd989fef8c))
+
 ## [1.0.11](https://github.com/wulukewu/shopping-site/compare/v1.0.10...v1.0.11) (2025-02-28)
 
 
