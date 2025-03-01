@@ -1,5 +1,6 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   publicPath: '/',
@@ -16,6 +17,11 @@ module.exports = {
             },
           },
         ],
+      }),
+      new webpack.DefinePlugin({
+        'process.env': {
+          VUE_APP_API_URL: JSON.stringify(process.env.VUE_APP_API_URL), //  Prevent replacement at build time
+        },
       }),
     ],
   },
