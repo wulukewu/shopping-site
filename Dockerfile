@@ -13,12 +13,6 @@ RUN npm install
 # Copy the entire project source code
 COPY . .
 
-# Declare VUE_APP_API_URL as an argument and define a default
-ARG VUE_APP_API_URL='http://localhost:3000' # Default if not provided
-
-# Set the environment variable during the build
-ENV VUE_APP_API_URL=$VUE_APP_API_URL
-
 # Build the Vue.js application
 RUN npm run build
 
@@ -28,11 +22,20 @@ FROM nginx:alpine
 # Copy the built application from the builder stage
 COPY --from=builder /app/dist /usr/share/nginx/html
 
+# Copy a configuration file placeholder
+COPY public/config.js /usr/share/nginx/html/config.js
+
+# Copy entrypoint script
+COPY entrypoint.sh /
+
+# Make the entrypoint script executable
+RUN chmod +x /entrypoint.sh
+
 # Expose port 80 (the default port for nginx)
 EXPOSE 80
 
 # If you need to configure nginx beyond the basics
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Nginx starts automatically on container start,
-# so no CMD instruction is needed.
+# Set the entrypoint to the shell script
+ENTRYPOINT ["/entrypoint.sh"]
