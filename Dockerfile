@@ -4,6 +4,9 @@ FROM node:18-alpine AS builder
 # Set the working directory inside the container
 WORKDIR /app
 
+# Declare VUE_APP_BASE_URL as an argument and define a default
+ARG VUE_APP_BASE_URL='http://localhost:3000' # Default if not provided
+
 # Copy package.json and package-lock.json (or yarn.lock)
 COPY package*.json ./
 
@@ -22,17 +25,11 @@ FROM nginx:alpine
 # Copy the built application from the builder stage
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Copy entrypoint script
-COPY entrypoint.sh /
-
-# Make the entrypoint script executable
-RUN chmod +x /entrypoint.sh
-
 # Expose port 80 (the default port for nginx)
 EXPOSE 80
 
 # If you need to configure nginx beyond the basics
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Set the entrypoint to the shell script
-ENTRYPOINT ["/entrypoint.sh"]
+# Nginx starts automatically on container start,
+# so no CMD instruction is needed.

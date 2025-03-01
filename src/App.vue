@@ -40,7 +40,6 @@ export default {
       try {
         const token = localStorage.getItem('token');
         const apiUrl = process.env.VUE_APP_BASE_URL;
-
         console.log('api URL:', apiUrl);
         const response = await fetch(`${apiUrl}/products`, {
           method: 'GET',
@@ -49,11 +48,9 @@ export default {
             'Content-Type': 'application/json', // Specify content type
           },
         });
-
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`); // Handle non-200 responses
         }
-
         const data = await response.json(); // Parse JSON response
         this.products = data;
       } catch (error) {
@@ -61,7 +58,6 @@ export default {
         // Optionally set an error state to display an error message to the user
       }
     },
-
     addToCart(productId, quantity) {
       if (!localStorage.getItem('token')) {
         alert('Please log in to add items to your cart.');
