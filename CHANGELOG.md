@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.13](https://github.com/wulukewu/shopping-site/compare/v1.0.12...v1.0.13) (2025-03-01)
+
+
+### Reverts
+
+* use default arg VUE_APP_API_URL to build docker ([20bb696](https://github.com/wulukewu/shopping-site/commit/20bb69621ec6cf84e4f760625a0b2450b201664a))
+
 ## [1.0.12](https://github.com/wulukewu/shopping-site/compare/v1.0.11...v1.0.12) (2025-03-01)
 
 
