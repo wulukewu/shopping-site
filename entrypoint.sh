@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# Replace the placeholder in config.js with the actual environment variable
-sed -i "s|YOUR_API_URL_HERE|$VUE_APP_API_URL|g" /usr/share/nginx/html/config.js
+# Create .env.production.local file with the VUE_APP_BASE_URL environment variable
+echo "VUE_APP_BASE_URL=$VUE_APP_BASE_URL" > /app/.env.production.local
 
 # Start nginx
 nginx -g "daemon off;"

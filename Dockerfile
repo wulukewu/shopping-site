@@ -22,9 +22,6 @@ FROM nginx:alpine
 # Copy the built application from the builder stage
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Copy a configuration file placeholder
-COPY public/config.js /usr/share/nginx/html/config.js
-
 # Copy entrypoint script
 COPY entrypoint.sh /
 
