@@ -109,19 +109,19 @@ docker build -t shopping-site .
 After successfully building the image, you can run a Docker container from it using the following command:
 
 ```bash
-docker run -p 8080:80 -e VUE_APP_API_URL='http://localhost:3000' shopping-site
+docker run -p 8080:80 -e VUE_APP_BASE_URL='http://localhost:3000' shopping-site
 ```
 
 **Explanation:**
 
 - `docker run`: This command runs a new container from an image.
 - `-p 8080:80`: This maps port 8080 on your host machine to port 80 inside the container. This allows you to access the application in your browser at `http://localhost:8080`. You can change `8080` to another available port on your machine.
-- `-e VUE_APP_API_URL='http://localhost:3000'`: This sets the environment variable `VUE_APP_API_URL` inside the container to `http://localhost:3000`. **Crucially, you need to replace `http://localhost:3000` with the actual URL of your backend API.** If your backend is also running in Docker, you should use the service name of your backend container, as described in the Docker Compose section.
+- `-e VUE_APP_BASE_URL='http://localhost:3000'`: This sets the environment variable `VUE_APP_BASE_URL` inside the container to `http://localhost:3000`. **Crucially, you need to replace `http://localhost:3000` with the actual URL of your backend API.** If your backend is also running in Docker, you should use the service name of your backend container, as described in the Docker Compose section.
 - `shopping-site`: This specifies the image to use for creating the container.
 
 ### Environment Variables in Docker
 
-When using Docker, set `VUE_APP_API_URL` via the `-e` flag during `docker run` or, preferably, use Docker Compose for more complex setups. See the Docker Compose example below for a more robust solution.
+When using Docker, set `VUE_APP_BASE_URL` via the `-e` flag during `docker run` or, preferably, use Docker Compose for more complex setups. See the Docker Compose example below for a more robust solution.
 
 ## AI Image Generator for Product Images
 
