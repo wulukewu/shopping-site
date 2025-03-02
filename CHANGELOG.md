@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.14](https://github.com/wulukewu/shopping-site/compare/v1.0.13...v1.0.14) (2025-03-02)
+
+
+### Bug Fixes
+
+* VUE_APP_API_URL to VUE_APP_BASE_URL ([3d6e177](https://github.com/wulukewu/shopping-site/commit/3d6e17767364204876362d2225cf027fe61c7850))
+
 ## [1.0.13](https://github.com/wulukewu/shopping-site/compare/v1.0.12...v1.0.13) (2025-03-01)
 
 
