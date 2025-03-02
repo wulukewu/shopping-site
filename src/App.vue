@@ -14,6 +14,9 @@
 <script>
 import NavbarList from './components/navbar/NavbarList.vue';
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 export default {
   components: {
     NavbarList,
@@ -39,8 +42,7 @@ export default {
     async fetchProducts() {
       try {
         const token = localStorage.getItem('token');
-        // Use process.env directly (no need for a separate apiUrl variable)
-        const apiUrl = process.env.VUE_APP_BASE_URL; // Read env var
+        const apiUrl = Configuration.value('VUE_APP_BASE_URL');
 
         console.log('api URL:', apiUrl);
 
