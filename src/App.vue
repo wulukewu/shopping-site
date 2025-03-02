@@ -39,8 +39,11 @@ export default {
     async fetchProducts() {
       try {
         const token = localStorage.getItem('token');
-        const apiUrl = window.appConfig.VUE_APP_BASE_URL;
+        // Use process.env directly (no need for a separate apiUrl variable)
+        const apiUrl = process.env.VUE_APP_BASE_URL; // Read env var
+
         console.log('api URL:', apiUrl);
+
         const response = await fetch(`${apiUrl}/products`, {
           method: 'GET',
           headers: {
@@ -48,9 +51,11 @@ export default {
             'Content-Type': 'application/json', // Specify content type
           },
         });
+
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`); // Handle non-200 responses
         }
+
         const data = await response.json(); // Parse JSON response
         this.products = data;
       } catch (error) {
