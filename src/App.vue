@@ -40,7 +40,7 @@ export default {
       try {
         const token = localStorage.getItem('token');
         const apiUrl = process.env.VUE_APP_BASE_URL;
-        
+
         console.log('api URL:', apiUrl);
         const response = await fetch(`${apiUrl}/products`, {
           method: 'GET',
