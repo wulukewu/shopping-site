@@ -20,7 +20,7 @@ ARG VUE_APP_BASE_URL
 RUN echo VUE_APP_BASE_URL=$VUE_APP_BASE_URL > .env
 
 # Build the Vue application for production
-RUN npm run build
+RUN npm run build --verbose
 
 # --- Stage 2: Serve the built application with Nginx ---
 FROM nginx:alpine
