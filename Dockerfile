@@ -13,6 +13,12 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
+# Set the base URL for the Vue application
+ARG VUE_APP_BASE_URL
+
+# Create a .env file with the base URL
+RUN echo VUE_APP_BASE_URL=$VUE_APP_BASE_URL > .env
+
 # Build the Vue application for production
 RUN npm run build
 
