@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.0.15](https://github.com/wulukewu/shopping-site/compare/v1.0.14...v1.0.15) (2025-03-10)
+
+
+### Bug Fixes
+
+* disable ARG VUE_APP_BASE_URL ([843fb6d](https://github.com/wulukewu/shopping-site/commit/843fb6d4e3058c39890e65241b5c588ce17a8680))
+* replace VUE_APP_API_URL with VUE_APP_BASE_URL ([1afd62d](https://github.com/wulukewu/shopping-site/commit/1afd62d4e4207d5eb62389cd0a9afebfa74a0b18))
+* replace VUE_APP_API_URL with VUE_APP_BASE_URL in settings ([b5d561c](https://github.com/wulukewu/shopping-site/commit/b5d561ca08dbe34a60aecd5047f0e2e233f5a809))
+* temp set VUE_APP_BASE_URL ([481c5d2](https://github.com/wulukewu/shopping-site/commit/481c5d2f38582900f593ac7ca15fbe03ac64bccb))
+* try VUE_APP_BASE_URL='http://api:3000' ([ec37fce](https://github.com/wulukewu/shopping-site/commit/ec37fce5ba1756208b2ecb814b309533384053eb))
+* use VUE_APP_BASE_URL from outer ([2ecfe70](https://github.com/wulukewu/shopping-site/commit/2ecfe7025d638876a31f931dae5419470022a593))
+* use webpack to load env ([dfac756](https://github.com/wulukewu/shopping-site/commit/dfac756bd516e5c418fe57d6992d62b1f0473a2b))
+
 ## [1.0.14](https://github.com/wulukewu/shopping-site/compare/v1.0.13...v1.0.14) (2025-03-02)
 
 
