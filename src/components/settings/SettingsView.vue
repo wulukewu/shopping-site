@@ -29,7 +29,7 @@ export default {
     async updateProfile() {
       try {
         const token = localStorage.getItem('token');
-        const apiUrl = process.env.VUE_APP_API_URL;
+        const apiUrl = process.env.VUE_APP_BASE_URL;
 
         const updateData = {};
         if (this.newUsername) {

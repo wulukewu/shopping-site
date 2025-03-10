@@ -24,7 +24,7 @@ export default {
   async mounted() {
     try {
       const token = localStorage.getItem('token');
-      const apiUrl = process.env.VUE_APP_API_URL;
+      const apiUrl = process.env.VUE_APP_BASE_URL;
 
       // Fetch protected data to get user ID
       const response = await fetch(`${apiUrl}/protected`, {
