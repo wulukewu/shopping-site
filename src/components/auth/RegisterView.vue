@@ -36,7 +36,7 @@ export default {
   methods: {
     async register() {
       try {
-        const apiUrl = process.env.VUE_APP_API_URL;
+        const apiUrl = process.env.VUE_APP_BASE_URL;
 
         const response = await fetch(`${apiUrl}/register`, {
           method: 'POST',

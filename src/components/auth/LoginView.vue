@@ -31,7 +31,7 @@ export default {
   methods: {
     async login() {
       try {
-        const apiUrl = process.env.VUE_APP_API_URL;
+        const apiUrl = process.env.VUE_APP_BASE_URL;
 
         const response = await fetch(`${apiUrl}/login`, {
           method: 'POST',
