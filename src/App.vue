@@ -61,19 +61,53 @@ export default {
         // Optionally set an error state to display an error message to the user
       }
     },
-
+    async loadCartFromDb() {
+      try {
+        const token = localStorage.getItem('token');
+        const apiUrl = process.env.VUE_APP_BASE_URL;
+        const response = await fetch(`${apiUrl}/cart/load`, {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const cartData = await response.json();
+        this.cart = cartData;
+        this.updateCart(this.cart);
+      } catch (error) {
+        console.error('Error loading cart from DB:', error);
+      }
+    },
     addToCart(productId, quantity) {
       if (!localStorage.getItem('token')) {
         alert('Please log in to add items to your cart.');
         this.$router.push('/login');
         return;
       }
+
+      console.log(
+        'addToCart called with productId:',
+        productId,
+        'quantity:',
+        quantity
+      );
+
       const product = this.products.find((product) => product.id === productId);
+
       if (product) {
+        console.log('Product found:', product);
+
         const cartItem = this.cart.find((item) => item.id === productId);
+
         if (cartItem) {
+          console.log('Cart item found, increasing quantity');
           cartItem.quantity += quantity;
         } else {
+          console.log('Cart item not found, adding new item');
           const item = {
             id: product.id,
             name: product.name,
@@ -82,7 +116,40 @@ export default {
           };
           this.cart.unshift(item);
         }
+
+        console.log('Cart after adding item:', this.cart); // **Important!**
+
         this.updateCart(this.cart);
+      } else {
+        console.log('Product not found with id:', productId);
+      }
+    },
+    async saveCartToDb() {
+      try {
+        const token = localStorage.getItem('token');
+        const apiUrl = process.env.VUE_APP_BASE_URL;
+
+        // Convert to a plain JavaScript array before stringifying
+        const cartData = JSON.parse(JSON.stringify(this.cart)); // **Important!**
+
+        console.log('Sending cart data:', cartData); // Check the format
+
+        const response = await fetch(`${apiUrl}/cart/save`, {
+          method: 'PUT',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(cartData), // Now stringify the plain array
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        console.log('Cart saved to DB successfully!');
+      } catch (error) {
+        console.error('Error saving cart to DB:', error);
       }
     },
     updateCart(updatedCart) {
@@ -91,10 +158,14 @@ export default {
         (total, item) => total + item.price * item.quantity,
         0
       );
+      this.saveCartToDb(); // Save to DB on every update
     },
   },
   mounted() {
     this.fetchProducts();
+    if (localStorage.getItem('token')) {
+      this.loadCartFromDb(); // Load cart when component mounts
+    }
   },
 };
 </script>
