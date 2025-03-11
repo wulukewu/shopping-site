@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/wulukewu/shopping-site/compare/v1.0.15...v1.1.0) (2025-03-11)
+
+
+### Features
+
+* load and save cart from db ([1d0a036](https://github.com/wulukewu/shopping-site/commit/1d0a036a9de8087d9e7b7c3877db73e9bde1194f))
+
 ## [1.0.15](https://github.com/wulukewu/shopping-site/compare/v1.0.14...v1.0.15) (2025-03-10)
 
 
