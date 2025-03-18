@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.4](https://github.com/wulukewu/shopping-site/compare/v1.1.3...v1.1.4) (2025-03-18)
+
+
+### Bug Fixes
+
+* remove postcss ([db6dece](https://github.com/wulukewu/shopping-site/commit/db6decec7780bbdc72a6f8b94cd13afaf426f781))
+
 ## [1.1.3](https://github.com/wulukewu/shopping-site/compare/v1.1.2...v1.1.3) (2025-03-18)
 
 
