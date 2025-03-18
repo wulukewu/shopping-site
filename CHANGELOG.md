@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/wulukewu/shopping-site/compare/v1.1.0...v1.1.1) (2025-03-18)
+
+
+### Bug Fixes
+
+* solve "PostCSS line return parsing error" ([6d3f0cd](https://github.com/wulukewu/shopping-site/commit/6d3f0cdba9a7beee2b414ff960ba657732021a61))
+
 ## [1.1.0](https://github.com/wulukewu/shopping-site/compare/v1.0.15...v1.1.0) (2025-03-11)
 
 
