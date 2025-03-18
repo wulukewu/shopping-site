@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/wulukewu/shopping-site/compare/v1.1.1...v1.1.2) (2025-03-18)
+
+
+### Bug Fixes
+
+* postcss security (https://stackoverflow.com/questions/67501746/postcss-7-0-0-8-2-9-severity-moderate-regular-expression-denial-of-service) ([d0bd0df](https://github.com/wulukewu/shopping-site/commit/d0bd0dfaa8a4d5867755067a9f2127fa9067509b))
+
 ## [1.1.1](https://github.com/wulukewu/shopping-site/compare/v1.1.0...v1.1.1) (2025-03-18)
 
 
