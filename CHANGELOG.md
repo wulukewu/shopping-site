@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.5](https://github.com/wulukewu/shopping-site/compare/v1.1.4...v1.1.5) (2025-03-18)
+
+
+### Bug Fixes
+
+* npm audit fix ([4b22213](https://github.com/wulukewu/shopping-site/commit/4b22213bbf5812ae9c802b1e1ff6e0cbb0d4c124))
+
 ## [1.1.4](https://github.com/wulukewu/shopping-site/compare/v1.1.3...v1.1.4) (2025-03-18)
 
 
