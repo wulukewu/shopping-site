@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.3](https://github.com/wulukewu/shopping-site/compare/v1.1.2...v1.1.3) (2025-03-18)
+
+
+### Bug Fixes
+
+* rebuild package-lock.json ([d845421](https://github.com/wulukewu/shopping-site/commit/d8454217bdf6ad522bacc3c4eaf4243f63245e02))
+
 ## [1.1.2](https://github.com/wulukewu/shopping-site/compare/v1.1.1...v1.1.2) (2025-03-18)
 
 
