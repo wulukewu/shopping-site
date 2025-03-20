@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: ghcr.io/wulukewu/shopping-site:latest
+    container_name: shopping-site
+    ports:
+      - '80:80'
+    depends_on:
+      - backend
+    networks:
+      - shopping-network
+    restart: unless-stopped
+
+  backend:
+    image: ghcr.io/wulukewu/shopping-site-api:latest
+    container_name: shopping-site-api
+    environment:
+      SECRET_KEY: 'your_secret_key'
+    ports:
+      - '3000:3000'
+    networks:
+      - shopping-network
+    restart: unless-stopped
+
+networks:
+  shopping-network:
+    driver: bridge
