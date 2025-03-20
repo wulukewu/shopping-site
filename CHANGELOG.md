@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.6](https://github.com/wulukewu/shopping-site/compare/v1.1.5...v1.1.6) (2025-03-20)
+
+
+### Bug Fixes
+
+* postcss warning ([6ef5c87](https://github.com/wulukewu/shopping-site/commit/6ef5c8785a8ef428da1a3b6705f070c96f17199e))
+
 ## [1.1.5](https://github.com/wulukewu/shopping-site/compare/v1.1.4...v1.1.5) (2025-03-18)
 
 
