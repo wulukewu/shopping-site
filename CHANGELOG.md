@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.10](https://github.com/wulukewu/shopping-site/compare/v1.1.9...v1.1.10) (2025-11-19)
+
+
+### Bug Fixes
+
+* VUE_APP_BASE_URL don't set from dockerfile ([#29](https://github.com/wulukewu/shopping-site/issues/29)) ([65b94bd](https://github.com/wulukewu/shopping-site/commit/65b94bd2556814561d38fc079c5094b75665e10b))
+
 ## [1.1.9](https://github.com/wulukewu/shopping-site/compare/v1.1.8...v1.1.9) (2025-03-20)
 
 
