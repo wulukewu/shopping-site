@@ -13,6 +13,13 @@ RUN npm install
 # Copy the entire project source code
 COPY . .
 
+# Declare VUE_APP_BASE_URL as an argument and define a default
+# ARG VUE_APP_BASE_URL='http://localhost:3000' # Default if not provided
+ARG VUE_APP_BASE_URL='https://shopping-site-api.001015.xyz'
+
+# Set the environment variable during the build
+ENV VUE_APP_BASE_URL=$VUE_APP_BASE_URL
+
 # Build the Vue.js application
 RUN npm run build
 
